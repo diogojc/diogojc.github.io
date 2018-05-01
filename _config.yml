@@ -23,7 +23,7 @@ title: diogojc blog
 url: "https://diogojc.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 github_username:  diogojc
-
+google_analytics: UA-51715262-3
 # Build settings
 markdown: kramdown
 theme: minima
