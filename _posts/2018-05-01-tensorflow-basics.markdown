@@ -2,7 +2,7 @@
 layout: post
 title:  "TensorFlow basics"
 date:   2018-05-01 21:38:52 +0200
-categories: tensorflow
+categories: tensorflow optimization
 ---
 In this post I want to lay out the fundamentals for my understanding of how to work further with [TensorFlow][tensorflow-url].
 
