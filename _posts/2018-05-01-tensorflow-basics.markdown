@@ -12,7 +12,6 @@ When using TensorFlow to train neural networks this is particularly handy for th
 Importing TensorFlow
 ==================
 
-First let's try to use the building blocks to 
 The first thing necessary is to load the library. I prefer to use the shorter 'tf' alias.
 {% highlight python %}
 import tensorflow as tf
