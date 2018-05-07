@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "TensorFlow basics"
+description: "Tensorflow as optimization for arbitrary computation graphs and its building blocks."
+image: "/assets/2018-05-01-tensorflow-basics/TensorFlowLogo.svg"
 date:   2018-05-01 21:38:52 +0200
 categories: ai
 tags: [tensorflow, neural networks, optimization]
