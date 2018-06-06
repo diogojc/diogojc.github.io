@@ -1,6 +1,5 @@
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
-import pdb
 
 
 def CreateConvLayer(previousLayer, filterCount, filterSize):
@@ -38,9 +37,8 @@ optimizer = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 accuracy = tf.metrics.accuracy(tf.argmax(y, 1), tf.argmax(l10, 1))
 
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    tf.local_variables_initializer().run()
-    train_writer = tf.summary.FileWriter('./logs/train ', sess.graph)
+    sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()])
+    # train_writer = tf.summary.FileWriter('./logs/train ', sess.graph)
     mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
     for step in range(20000):
         train = mnist.train.next_batch(100)

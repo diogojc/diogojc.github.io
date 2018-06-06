@@ -97,9 +97,7 @@ We then run the optimizer to update the parameters of the network so the loss fu
 
 {% highlight python %}
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    tf.local_variables_initializer().run()
-    train_writer = tf.summary.FileWriter('./logs/train ', sess.graph)
+    sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()])
     mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
     for step in range(20000):
         train = mnist.train.next_batch(100)
@@ -115,8 +113,9 @@ with tf.Session() as sess:
             print("[Step %s] Cost: %s Accuracy (Train): %s Accuracy (Test): %s" % (step, c, acc[0], acc2[0]))
 {% endhighlight %}
 
-After some time this network should approach 99% accuracy in classifying grey images of handwritten digits.
+After some time this network should approach 99% accuracy in classifying grey images of handwritten digits. Download the full code [here][cnncode-url].
 
 [convolution-url]: https://en.wikipedia.org/wiki/Convolution
 [lenet-url]: http://yann.lecun.com/exdb/lenet/
 [mnist-url]: http://yann.lecun.com/exdb/mnist/
+[cnncode-url]: /assets/code/2018-06-06-tensorflow-cnn/mnistcnn.py
