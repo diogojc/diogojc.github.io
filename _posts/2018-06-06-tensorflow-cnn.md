@@ -25,7 +25,7 @@ Although it might seem like this neural network would miss non-local relationshi
 
 The word convolution in these networks comes from the fact that activations of a layer are [convolved][convolution-url] with these filters to generate the activations for the next layer. Bellow is an animation of how this works in practice.
 
-![Convolution operation]({{ "/assets/images/2018-06-06-tensorflow-cnn/3D_Convolution_Animation.gif" | absolute_url }})
+![Convolution operation]({{ "/assets/2018-06-06-tensorflow-cnn/images/3D_Convolution_Animation.gif" | absolute_url }})
 
 In the edges of the input layer there isn't enough data to perform a convolution operation. We can either skip these activations (which will change the size of the layer) or specify a padding $$p$$ to fill up data so it is possible to perform a convolution with the edge at the center (and keep the same dimensionality in the "output" layer).
 Stride $$s$$ is how big a jump the convolution operator takes between convolutions. Which in the example above was 1.
@@ -37,7 +37,7 @@ $$n=\frac{n^{l-1}+2*p-f}{s}+1$$
 
 # Example convolution neural network (LeNet-5)
 
-![Lenet-5]({{ "/assets/images/2018-06-06-tensorflow-cnn/lenet-5.png" | absolute_url }})
+![Lenet-5]({{ "/assets/2018-06-06-tensorflow-cnn/images/lenet-5.png" | absolute_url }})
 
 Above is an example of a Convolutional Neural Network known as [Lenet-5][lenet-url].
 
@@ -118,4 +118,4 @@ After some time this network should approach 99% accuracy in classifying grey im
 [convolution-url]: https://en.wikipedia.org/wiki/Convolution
 [lenet-url]: http://yann.lecun.com/exdb/lenet/
 [mnist-url]: http://yann.lecun.com/exdb/mnist/
-[cnncode-url]: /assets/code/2018-06-06-tensorflow-cnn/mnistcnn.py
+[cnncode-url]: /assets/2018-06-06-tensorflow-cnn/code/mnistcnn.py

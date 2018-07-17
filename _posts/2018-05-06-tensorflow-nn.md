@@ -59,7 +59,7 @@ y_newdata = sess.run(a, feed_dict={X: X_newdata}) > 0.5
 
 Bellow is an illustration of the decision boudary that the perceptron learns. Full source code [here][perceptroncode-url].
 
-![Perceptron output]({{ "/assets/images/2018-05-06-tensorflow-nn/perceptron_output.png" | absolute_url }})
+![Perceptron output]({{ "/assets/2018-05-06-tensorflow-nn/images/perceptron_output.png" | absolute_url }})
 
 # Classification on non-linear structure
 Let's now use TensorFlow to find a decision boundary on a dataset that is **NOT** linearly separable.
@@ -68,7 +68,7 @@ Building on the previous example I will build a [multi layer perceptron neural n
 Also the output of the perceptrons will feed to other perceptrons in layers with the final layer outputing a number between 0 and 1.
 This combination of multi layered perceptrons allows for the network as a whole to learn non-linear decision boundaries. 
 
-![Multilayer Perceptron]({{ "/assets/images/2018-05-06-tensorflow-nn/mlp.png" | absolute_url}})
+![Multilayer Perceptron]({{ "/assets/2018-05-06-tensorflow-nn/images/mlp.png" | absolute_url}})
 
 {% highlight python %}
 def CreateLayer(previousLayer, perceptronCount):
@@ -103,11 +103,11 @@ with tf.Session() as sess:
 
 Bellow is an illustration of the decision boudary that the perceptron learns. Full source code [here][mlpcode-url].
 
-![Decision boundary for non linear dataset]({{ "/assets/images/2018-05-06-tensorflow-nn/perceptron_output2.png" | absolute_url }})
+![Decision boundary for non linear dataset]({{ "/assets/2018-05-06-tensorflow-nn/images/perceptron_output2.png" | absolute_url }})
 
 Next up we will create diferent architectures then the one in the multilayer perceptron to decrease complexity and take advantage of existing structure in the data.
 
 [perceptron-url]: https://en.wikipedia.org/wiki/Perceptron
-[perceptroncode-url]: /assets/code/2018-05-06-tensorflow-nn/perceptron.py
+[perceptroncode-url]: /assets/2018-05-06-tensorflow-nn/code/perceptron.py
 [mlp-url]: https://en.wikipedia.org/wiki/Multilayer_perceptron
-[mlpcode-url]: /assets/code/2018-05-06-tensorflow-nn/mlp.py
+[mlpcode-url]: /assets/2018-05-06-tensorflow-nn/code/mlp.py

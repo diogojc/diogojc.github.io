@@ -1,6 +1,8 @@
 ---
 layout: post
 title:  "Entropy in Sotware Development"
+description: ""
+image: ""
 date:   2016-05-01 21:38:52 +0200
 categories: [software development]
 tags: [software development, entropy]
@@ -14,8 +16,7 @@ Simply put, without an external source of energy, in the natural world, structur
 
 You can extrapolate this natural law on a lot of places, from the mundane, on why a car without maintenance will eventually rust and stop working, to the more metaphysical, on how life (structure) cannot start itself without external energy sources like the sun.
 
-Entropy in software development
-==================
+## Entropy in software development
 
 I find it fun to try to extrapolate this concept to software development and to some of my work experience.
 
@@ -31,8 +32,8 @@ Symptoms include slower time to market, fixing bad behaviour introduces more bad
 
 The pervasiveness of this anti-pattern is a testament of the entropic forces hard at work in software development.
 
-Fighting entropy in software
-==================
+## Fighting entropy in software
+
 This, does not mean that all projects will die the entropic death. It just means that something has to fight this natural law.
 
 I believe it’s as impossible to remove the randomness of the biggest entropic forces in software development as is impossible to fight the second law of thermodynamics. The single best thing we can do to fight entropy is to make good design decisions, do them often and do them systemically.
