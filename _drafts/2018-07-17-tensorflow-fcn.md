@@ -22,7 +22,10 @@ This down and up-sampling creates a (albeit contrived) U shaped architecture lik
 
 ![u-net]({{ "/assets/2018-07-17-tensorflow-fcn/images/u-net-architecture.png" | absolute_url }})
 
+TODO: explain up sampling (use this https://github.com/vdumoulin/conv_arithmetic)
+
 ## Example image segmentation with COCO dataset
+
 
 ### Loading COCO dataset
 dasdasas
