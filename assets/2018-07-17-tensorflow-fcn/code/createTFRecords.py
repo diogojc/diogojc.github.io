@@ -48,7 +48,9 @@ class dataset:
         if imgIds is None:
             imgIds = self.getImgIdsFromClassNames(classNames=classNames)
         writer = tf.python_io.TFRecordWriter(outFile)
+        i = 1
         for imgId in imgIds:
+            print("{:10.2f}%".format(100*(float)(i)/len(imgIds)), end='\r')
             image = next(self.getImagesFromImgIds(imgId))[..., ::-1]
             mask = self.getBinaryMaskFromImgId(imgId, classNames)
             features = {
@@ -59,21 +61,28 @@ class dataset:
             }
             example = tf.train.Example(features=tf.train.Features(feature=features))
             writer.write(example.SerializeToString())
+            i+=1
         writer.close()
 
 
+# ds = dataset("/Users/diogoc/Downloads/coco/train2017",
+#              "/Users/diogoc/Downloads/coco/annotations/instances_train2017.json")
+# # for className in ds.getClassNames():
+# #     print(className)
+# classNames = ["cat"]
+# imgIds = ds.getImgIdsFromClassNames(classNames)
+# print("{} images found.".format(len(imgIds)))
+# # for imgId in imgIds:
+# #     img = next(ds.getImagesFromImgIds(imgId))
+# #     binMask = ds.getBinaryMaskFromImgId(imgId, classNames)
+# #     cv2.imshow('maskedImage', img*binMask)
+# #     cv2.waitKey(0)
+# #     cv2.destroyAllWindows()
+# ds.CreateCocoTFRecord("/Users/diogoc/Downloads/coco/train2017.tfrecord", imgIds, classNames)
+
 ds = dataset("/Users/diogoc/Downloads/coco/val2017",
              "/Users/diogoc/Downloads/coco/annotations/instances_val2017.json")
-# for className in ds.getClassNames():
-#     print(className)
-classNames = ["tennis racket", "person"]
+classNames = ["cat"]
 imgIds = ds.getImgIdsFromClassNames(classNames)
 print("{} images found.".format(len(imgIds)))
-# for imgId in imgIds:
-#     img = next(ds.getImagesFromImgIds(imgId))
-#     binMask = ds.getBinaryMaskFromImgId(imgId, classNames)
-#     cv2.imshow('maskedImage', img*binMask)
-#     cv2.waitKey(0)
-#     cv2.destroyAllWindows()
 ds.CreateCocoTFRecord("/Users/diogoc/Downloads/coco/val2017.tfrecord", imgIds, classNames)
-

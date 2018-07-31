@@ -2,6 +2,7 @@ import tensorflow as tf
 from tensorflow import concat, slice
 from tensorflow.python import debug as tf_debug
 
+tf.reset_default_graph()
 
 def decode(serialized_example):
     features = {
@@ -24,10 +25,10 @@ def decode(serialized_example):
     resizedMask = tf.image.resize_image_with_crop_or_pad(mask, 388, 388)
     return tf.cast(resizedImage, tf.float32), tf.cast(resizedMask, tf.float32)
 
-dataset = tf.data.TFRecordDataset("/Users/diogoc/Downloads/coco/val2017.tfrecord")
+dataset = tf.data.TFRecordDataset("train2017.tfrecord")
 dataset = dataset.map(decode)
-epochs = 10
-batch_size = 5
+epochs = 500
+batch_size = 7
 batch = dataset.batch(batch_size)
 iterator = batch.make_initializable_iterator()
 next_element = iterator.get_next()
@@ -38,94 +39,91 @@ X, y = next_element
 
 # down path
 ld1_1 = tf.layers.batch_normalization(X, training=True)
-ld1_2 = tf.layers.conv2d(ld1_1, 64, [3, 3], padding="valid", activation=tf.nn.relu)
-ld1_3 = tf.layers.conv2d(ld1_2, 64, [3, 3], padding="valid", activation=tf.nn.relu)
+ld1_2 = tf.layers.batch_normalization(tf.layers.conv2d(ld1_1, 64, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+ld1_3 = tf.layers.batch_normalization(tf.layers.conv2d(ld1_2, 64, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
 ld2_1 = tf.layers.max_pooling2d(ld1_3, 2, 2, padding='valid')
-ld2_2 = tf.layers.conv2d(ld2_1, 128, [3, 3], padding="valid", activation=tf.nn.relu)
-ld2_3 = tf.layers.conv2d(ld2_2, 128, [3, 3], padding="valid", activation=tf.nn.relu)
+ld2_2 = tf.layers.batch_normalization(tf.layers.conv2d(ld2_1, 128, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+ld2_3 = tf.layers.batch_normalization(tf.layers.conv2d(ld2_2, 128, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
 ld3_1 = tf.layers.max_pooling2d(ld2_3, 2, 2, padding='valid')
-ld3_2 = tf.layers.conv2d(ld3_1, 256, [3, 3], padding="valid", activation=tf.nn.relu)
-ld3_3 = tf.layers.conv2d(ld3_2, 256, [3, 3], padding="valid", activation=tf.nn.relu)
+ld3_2 = tf.layers.batch_normalization(tf.layers.conv2d(ld3_1, 256, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+ld3_3 = tf.layers.batch_normalization(tf.layers.conv2d(ld3_2, 256, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
 ld4_1 = tf.layers.max_pooling2d(ld3_3, 2, 2, padding='valid')
-ld4_2 = tf.layers.conv2d(ld4_1, 512, [3, 3], padding="valid", activation=tf.nn.relu)
-ld4_3 = tf.layers.conv2d(ld4_2, 512, [3, 3], padding="valid", activation=tf.nn.relu)
+ld4_2 = tf.layers.batch_normalization(tf.layers.conv2d(ld4_1, 512, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+ld4_3 = tf.layers.batch_normalization(tf.layers.conv2d(ld4_2, 512, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
 l5_1 = tf.layers.max_pooling2d(ld4_3, 2, 2, padding='valid')
-l5_2 = tf.layers.conv2d(l5_1, 1024, [3, 3], padding="valid", activation=tf.nn.relu)
-l5_3 = tf.layers.conv2d(l5_2, 1024, [3, 3], padding="valid", activation=tf.nn.relu)
+l5_2 = tf.layers.batch_normalization(tf.layers.conv2d(l5_1, 1024, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+l5_3 = tf.layers.batch_normalization(tf.layers.conv2d(l5_2, 1024, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
 
 # up path
-upsamp = tf.layers.conv2d_transpose(l5_3, 512, [2, 2], strides=[2, 2], padding='valid')
+upsamp = tf.layers.batch_normalization(tf.layers.conv2d_transpose(l5_3, 512, [2, 2], strides=[2, 2], padding='valid'), training=True)
 copy = ld4_3
 begincrop = (int)((copy.shape.as_list()[1] - upsamp.shape.as_list()[1])/2)
 sizecrop = upsamp.shape.as_list()[1]
 copycrop = slice(copy, [0, begincrop, begincrop, 0], [-1, sizecrop, sizecrop, -1])
 lu4_1 = concat([copycrop, upsamp], 3)
-lu4_2 = tf.layers.conv2d(lu4_1, 512, [3, 3], padding="valid", activation=tf.nn.relu)
-lu4_3 = tf.layers.conv2d(lu4_2, 512, [3, 3], padding="valid", activation=tf.nn.relu)
+lu4_2 = tf.layers.batch_normalization(tf.layers.conv2d(lu4_1, 512, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+lu4_3 = tf.layers.batch_normalization(tf.layers.conv2d(lu4_2, 512, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
-upsamp = tf.layers.conv2d_transpose(lu4_3, 256, [2, 2], strides=[2, 2], padding='valid')
+upsamp = tf.layers.batch_normalization(tf.layers.conv2d_transpose(lu4_3, 256, [2, 2], strides=[2, 2], padding='valid'), training=True)
 copy = ld3_3
 begincrop = (int)((copy.shape.as_list()[1] - upsamp.shape.as_list()[1])/2)
 sizecrop = upsamp.shape.as_list()[1]
 copycrop = slice(copy, [0, begincrop, begincrop, 0], [-1, sizecrop, sizecrop, -1])
 lu3_1 = concat([copycrop, upsamp], 3)
-lu3_2 = tf.layers.conv2d(lu3_1, 256, [3, 3], padding="valid", activation=tf.nn.relu)
-lu3_3 = tf.layers.conv2d(lu3_2, 256, [3, 3], padding="valid", activation=tf.nn.relu)
+lu3_2 = tf.layers.batch_normalization(tf.layers.conv2d(lu3_1, 256, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+lu3_3 = tf.layers.batch_normalization(tf.layers.conv2d(lu3_2, 256, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
-upsamp = tf.layers.conv2d_transpose(lu3_3, 128, [2, 2], strides=[2, 2], padding='valid')
+upsamp = tf.layers.batch_normalization(tf.layers.conv2d_transpose(lu3_3, 128, [2, 2], strides=[2, 2], padding='valid'), training=True)
 copy = ld2_3
 begincrop = (int)((copy.shape.as_list()[1] - upsamp.shape.as_list()[1])/2)
 sizecrop = upsamp.shape.as_list()[1]
 copycrop = slice(copy, [0, begincrop, begincrop, 0], [-1, sizecrop, sizecrop, -1])
 lu2_1 = concat([copycrop, upsamp], 3)
-lu2_2 = tf.layers.conv2d(lu2_1, 128, [3, 3], padding="valid", activation=tf.nn.relu)
-lu2_3 = tf.layers.conv2d(lu2_2, 128, [3, 3], padding="valid", activation=tf.nn.relu)
+lu2_2 = tf.layers.batch_normalization(tf.layers.conv2d(lu2_1, 128, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+lu2_3 = tf.layers.batch_normalization(tf.layers.conv2d(lu2_2, 128, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
 
-upsamp = tf.layers.conv2d_transpose(lu2_3, 64, [2, 2], strides=[2, 2], padding='valid')
+upsamp = tf.layers.batch_normalization(tf.layers.conv2d_transpose(lu2_3, 64, [2, 2], strides=[2, 2], padding='valid'), training=True)
 copy = ld1_3
 begincrop = (int)((copy.shape.as_list()[1] - upsamp.shape.as_list()[1])/2)
 sizecrop = upsamp.shape.as_list()[1]
 copycrop = slice(copy, [0, begincrop, begincrop, 0], [-1, sizecrop, sizecrop, -1])
 lu1_1 = concat([copycrop, upsamp], 3)
-lu1_2 = tf.layers.conv2d(lu1_1, 64, [3, 3], padding="valid", activation=tf.nn.relu)
-lu1_3 = tf.layers.conv2d(lu1_2, 64, [3, 3], padding="valid", activation=tf.nn.relu)
-lu1_4 = tf.layers.conv2d(lu1_3, 1, [1, 1], padding="valid", activation=tf.nn.relu)
-
-# caca = tf.reduce_all(tf.logical_not(tf.is_nan(lu1_4)))
-# assert_op = tf.Assert(caca, [lu1_4])
+lu1_2 = tf.layers.batch_normalization(tf.layers.conv2d(lu1_1, 64, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+lu1_3 = tf.layers.batch_normalization(tf.layers.conv2d(lu1_2, 64, [3, 3], padding="valid", activation=tf.nn.relu), training=True)
+lu1_4 = tf.layers.conv2d(lu1_3, 1, [1, 1], padding="valid", activation=tf.sigmoid)
 
 # loss function
-flat_lu1_4 = tf.reshape(lu1_4, [-1, 388*388])
-flat_y = tf.reshape(y, [-1, 388*388])
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=flat_lu1_4, labels=flat_y))
+cost = tf.reduce_sum(tf.keras.backend.binary_crossentropy(y, lu1_4))
 optimizer = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 
-tf.summary.scalar('cross_entropy', cost)
-tf.summary.image("trainingImages", X, max_outputs=batch_size)
-tf.summary.image("trainingMasks", y, max_outputs=batch_size)
+tf.summary.scalar("cost", cost)
+tf.summary.image("trainingImages", X, max_outputs=2)
+tf.summary.image("trainingMasks", y, max_outputs=2)
+tf.summary.image("trainingPred", lu1_4, max_outputs=2)
 summaryOp = tf.summary.merge_all()
 
-# https://wookayin.github.io/tensorflow-talk-debugging/#40
-with tf.Session() as sess:
+config = tf.ConfigProto(device_count={'GPU': 1}, log_device_placement=True)
+with tf.Session(config=config) as sess:
     sess.run([tf.global_variables_initializer(), tf.local_variables_initializer()])
-    # sess = tf_debug.TensorBoardDebugWrapperSession(sess, "localhost:6064")
-    writer = tf.summary.FileWriter('./logs/train ', sess.graph)
+    #sess = tf_debug.TensorBoardDebugWrapperSession(sess, "localhost:6066")
+    writer = tf.summary.FileWriter("/tmp/log", sess.graph)
     sess.graph.finalize()
-    for epoch in range(epochs):
+    runnr = 1
+    for epoch in range(1, epochs+1):
         print("Starting epoch {}...".format(epoch))
         sess.run(iterator.initializer)
         try:
             batchnr = 1
             while True:
-                summary, c = sess.run([summaryOp, cost])
-                writer.add_summary(summary, batchnr)
-                #if batchnr % batch_size:
-                print("Epoch: {}, Batch: {}, Cost: {}".format(epoch, batchnr, c))
+                _, c, summary = sess.run([optimizer, cost, summaryOp])
+                writer.add_summary(summary, runnr)
+                print("Run: {}, Epoch: {}, Batch: {}, Cost: {}".format(runnr, epoch, batchnr, c))
                 batchnr += 1
+                runnr += 1
         except tf.errors.OutOfRangeError:
             pass
