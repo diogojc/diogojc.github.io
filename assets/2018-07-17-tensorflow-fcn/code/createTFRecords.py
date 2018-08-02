@@ -44,7 +44,6 @@ class dataset:
         return mask.astype(np.uint8)
 
     def CreateCocoTFRecord(self, outFile, imgIds=None, classNames=None):
-        #https://planspace.org/20170427-sparse_tensors_and_tfrecords/
         if imgIds is None:
             imgIds = self.getImgIdsFromClassNames(classNames=classNames)
         writer = tf.python_io.TFRecordWriter(outFile)
@@ -61,28 +60,19 @@ class dataset:
             }
             example = tf.train.Example(features=tf.train.Features(feature=features))
             writer.write(example.SerializeToString())
-            i+=1
+            i += 1
         writer.close()
 
 
-# ds = dataset("/Users/diogoc/Downloads/coco/train2017",
-#              "/Users/diogoc/Downloads/coco/annotations/instances_train2017.json")
-# # for className in ds.getClassNames():
-# #     print(className)
-# classNames = ["cat"]
-# imgIds = ds.getImgIdsFromClassNames(classNames)
-# print("{} images found.".format(len(imgIds)))
-# # for imgId in imgIds:
-# #     img = next(ds.getImagesFromImgIds(imgId))
-# #     binMask = ds.getBinaryMaskFromImgId(imgId, classNames)
-# #     cv2.imshow('maskedImage', img*binMask)
-# #     cv2.waitKey(0)
-# #     cv2.destroyAllWindows()
-# ds.CreateCocoTFRecord("/Users/diogoc/Downloads/coco/train2017.tfrecord", imgIds, classNames)
-
-ds = dataset("/Users/diogoc/Downloads/coco/val2017",
-             "/Users/diogoc/Downloads/coco/annotations/instances_val2017.json")
+imgsPath = "/Users/diogoc/Downloads/coco/{}2017"
+annotationsPath = "/Users/diogoc/Downloads/coco/annotations/instances_{}2017.json"
+tfRecordPath = "/Users/diogoc/Downloads/coco/{}2017.tfrecord"
 classNames = ["cat"]
+
+ds = dataset(imgsPath.format("train"), annotationsPath.format("train"))
 imgIds = ds.getImgIdsFromClassNames(classNames)
-print("{} images found.".format(len(imgIds)))
-ds.CreateCocoTFRecord("/Users/diogoc/Downloads/coco/val2017.tfrecord", imgIds, classNames)
+ds.CreateCocoTFRecord(tfRecordPath.format("train"), imgIds, classNames)
+
+ds = dataset(imgsPath.format("val"), annotationsPath.format("val"))
+imgIds = ds.getImgIdsFromClassNames(classNames)
+ds.CreateCocoTFRecord(tfRecordPath.format("val"), imgIds, classNames)
