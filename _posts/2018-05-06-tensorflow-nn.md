@@ -105,9 +105,9 @@ Bellow is an illustration of the decision boudary that the perceptron learns. Fu
 
 ![Decision boundary for non linear dataset]({{ "/assets/2018-05-06-tensorflow-nn/images/perceptron_output2.png" | absolute_url }})
 
-Next up we will create diferent architectures then the one in the multilayer perceptron to decrease complexity and take advantage of existing structure in the data.
+[Next up]({{ site.baseurl }}{% post_url 2018-06-06-tensorflow-cnn %}) we will create diferent architectures then the one in the multilayer perceptron to decrease complexity and take advantage of existing structure in the data.
 
 [perceptron-url]: https://en.wikipedia.org/wiki/Perceptron
-[perceptroncode-url]: /assets/2018-05-06-tensorflow-nn/code/perceptron.py
+[perceptroncode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-05-06-tensorflow-nn/code/perceptron.py
 [mlp-url]: https://en.wikipedia.org/wiki/Multilayer_perceptron
-[mlpcode-url]: /assets/2018-05-06-tensorflow-nn/code/mlp.py
+[mlpcode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-05-06-tensorflow-nn/code/mlp.py

@@ -115,7 +115,9 @@ with tf.Session() as sess:
 
 After some time this network should approach 99% accuracy in classifying grey images of handwritten digits. Download the full code [here][cnncode-url].
 
+This post was about creating a neural network that takes advantage of the convolutional operator but ultimately ends up with a traditional multi layer perceptron. In the [next post]({{ site.baseurl }}{% post_url 2018-06-06-tensorflow-cnn %}) I'll discuss why you would want to do without the fully connected approach in the last layers and build a network that contains convolutions from beginning to end.
+
 [convolution-url]: https://en.wikipedia.org/wiki/Convolution
 [lenet-url]: http://yann.lecun.com/exdb/lenet/
 [mnist-url]: http://yann.lecun.com/exdb/mnist/
-[cnncode-url]: /assets/2018-06-06-tensorflow-cnn/code/mnistcnn.py
+[cnncode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-06-06-tensorflow-cnn/code/mnistcnn.py
