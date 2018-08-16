@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Entropy in Sotware Development"
-description: ""
 image: ""
+excerpt: "EXCERPT GOES HERE"
 date:   2016-05-01 21:38:52 +0200
 categories: [software development]
 tags: [software development, entropy]

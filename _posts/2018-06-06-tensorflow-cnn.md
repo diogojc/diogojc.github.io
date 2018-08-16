@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "TensorFlow for Convolutional Neural Networks"
-description: ""
 image: ""
+excerpt: "EXCERPT GOES HERE"
 date:   2018-06-06 17:33:00 +0200
 categories: ai
 tags: [tensorflow, neural networks, image, convolution]

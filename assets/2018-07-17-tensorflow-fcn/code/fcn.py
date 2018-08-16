@@ -2,7 +2,7 @@ import tensorflow as tf
 from tensorflow import concat, slice
 
 
-def GetDataIterator(tfrecordPath):
+def GetDataIterator(tfrecordPath, batchSize=7):
     def decode(serialized_example):
         features = {
             "imageContent": tf.FixedLenFeature([], tf.string),
@@ -27,8 +27,7 @@ def GetDataIterator(tfrecordPath):
 
     dataset = tf.data.TFRecordDataset(tfrecordPath)
     dataset = dataset.map(decode)
-    batch_size = 7
-    batch = dataset.batch(batch_size)
+    batch = dataset.batch(batchSize)
     iterator = batch.make_initializable_iterator()
     return iterator
 
@@ -63,7 +62,7 @@ def upConvolution(inputLayer, numChannels):
     return batchnorm
 
 
-def MergeLayers(inputLayer, siblingLayer):
+def mergeLayers(inputLayer, siblingLayer):
     inputLayerShape = inputLayer.shape.as_list()[1]
     siblingLayerShape = siblingLayer.shape.as_list()[1]
     begincrop = (int)((siblingLayerShape - inputLayerShape)/2)
@@ -72,6 +71,14 @@ def MergeLayers(inputLayer, siblingLayer):
                                 [-1, inputLayerShape, inputLayerShape, -1])
     mergedLayer = concat([croppedSiblingLayer, inputLayer], 3)
     return mergedLayer
+
+
+def outputLayer(inputLayer, numChannels):
+    return tf.layers.conv2d(inputLayer,
+                            numChannels,
+                            [1, 1],
+                            padding="valid",
+                            activation=tf.sigmoid)
 
 
 def UNet(X):
@@ -86,27 +93,24 @@ def UNet(X):
     conv5 = convolutions(maxpool4, 1024)
 
     upconv1 = upConvolution(conv5, 512)
-    merge1 = MergeLayers(upconv1, conv4)
+    merge1 = mergeLayers(upconv1, conv4)
     conv6 = convolutions(merge1, 512)
     upconv2 = upConvolution(conv6, 256)
-    merge2 = MergeLayers(upconv2, conv3)
+    merge2 = mergeLayers(upconv2, conv3)
     conv7 = convolutions(merge2, 256)
     upconv3 = upConvolution(conv7, 128)
-    merge3 = MergeLayers(upconv3, conv2)
+    merge3 = mergeLayers(upconv3, conv2)
     conv8 = convolutions(merge3, 128)
     upconv4 = upConvolution(conv8, 64)
-    merge4 = MergeLayers(upconv4, conv1)
+    merge4 = mergeLayers(upconv4, conv1)
     conv9 = convolutions(merge4, 64)
 
-    return tf.layers.conv2d(conv9,
-                            1,
-                            [1, 1],
-                            padding="valid",
-                            activation=tf.sigmoid)
+    return outputLayer(conv9, 1)
 
 
 tf.reset_default_graph()
-iterator = GetDataIterator("/Users/diogoc/Downloads/coco/val2017.tfrecord")
+iterator = GetDataIterator("/Users/diogoc/Downloads/coco/val2017.tfrecord",
+                           batchSize=7)
 X, y = iterator.get_next()
 y_hat = UNet(X)
 cost = tf.reduce_sum(tf.keras.backend.binary_crossentropy(y, y_hat))

@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "TensorFlow for Neural Networks"
-description: "Using tensorflow to create decision boundaries on linear and non-linear datasets."
 image: "/assets/images/2018-05-06-tensorflow-nn/mlp.png"
+excerpt: "Using tensorflow to create decision boundaries on linear and non-linear datasets."
 date:   2018-05-06 21:34:52 +0200
 categories: ai
 tags: [tensorflow, neural networks, optimization]
