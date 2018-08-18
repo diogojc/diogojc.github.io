@@ -3,8 +3,8 @@ layout: post
 author: diogojc
 title:  "TensorFlow for Fully Convolutional Neural Networks"
 image: "/assets/2018-08-16-tensorflow-fcn/images/segmentation2.png"
-excerpt: "Implementing Fully convolutional neural networ U-Net in Tensorflow for image segmentation"
-description: "Implementing Fully convolutional neural networ U-Net in Tensorflow for image segmentation"
+excerpt: "Implementing Fully convolutional neural network U-Net in Tensorflow for image segmentation"
+description: "Implementing Fully convolutional neural network U-Net in Tensorflow for image segmentation"
 date:   2018-08-16 22:52:00 +0200
 categories: ai
 tags: [tensorflow, neural networks, image, convolution, coco, segmentation, fcnn, u-net]
