@@ -2,7 +2,7 @@
 layout: post
 author: diogojc
 title:  "TensorFlow basics"
-image: "/assets/2018-05-01-tensorflow-basics/TensorFlowLogo.svg"
+image: "/assets/2018-05-01-tensorflow-basics/images/banner.jpg"
 excerpt: "Tensorflow as optimization for arbitrary computation graphs and its building blocks."
 description: "Tensorflow as optimization for arbitrary computation graphs and its building blocks."
 date:   2018-05-01 21:38:52 +0200
