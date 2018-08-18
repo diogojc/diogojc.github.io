@@ -1,5 +1,6 @@
 ---
 layout: post
+author: diogojc
 title:  "TensorFlow for Fully Convolutional Neural Networks"
 image: "/assets/2018-08-16-tensorflow-fcn/images/segmentation2.png"
 excerpt: "Implementing Fully convolutional neural networ U-Net in Tensorflow for image segmentation"
