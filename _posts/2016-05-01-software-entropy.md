@@ -3,8 +3,8 @@ layout: post
 author: diogojc
 title:  "Entropy in Sotware Development"
 image: "/assets/2016-05-01-software-entropy/banner.jpg"
-excerpt: "Thought on entropy in software development"
-description: "Thought on entropy in software development"
+excerpt: "Thoughts on entropy in software development."
+description: "Thoughts on entropy in software development."
 date:   2016-05-01 21:38:52 +0200
 categories: [software development]
 tags: [software development, entropy]

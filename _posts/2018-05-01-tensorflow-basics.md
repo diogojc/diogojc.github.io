@@ -3,8 +3,8 @@ layout: post
 author: diogojc
 title:  "TensorFlow basics"
 image: "/assets/2018-05-01-tensorflow-basics/images/banner.jpg"
-excerpt: "Tensorflow as optimization for arbitrary computation graphs and its building blocks."
-description: "Tensorflow as optimization for arbitrary computation graphs and its building blocks."
+excerpt: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
+description: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 date:   2018-05-01 21:38:52 +0200
 categories: ai
 tags: [tensorflow, neural networks, optimization]

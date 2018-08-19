@@ -3,8 +3,8 @@ layout: post
 author: diogojc
 title:  "TensorFlow for Convolutional Neural Networks"
 image: "/assets/2018-06-06-tensorflow-cnn/images/lenet-5.png"
-excerpt: "Taking advantage of spatial properties with convolutional neural networks and Tensorflow to recognize digits."
-description: "Taking advantage of spatial properties with convolutional neural networks and Tensorflow to recognize digits."
+excerpt: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
+description: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
 date:   2018-06-06 17:33:00 +0200
 categories: ai
 tags: [tensorflow, neural networks, image, convolution]
