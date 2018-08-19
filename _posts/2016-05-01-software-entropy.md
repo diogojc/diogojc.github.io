@@ -6,8 +6,8 @@ image: "/assets/2016-05-01-software-entropy/banner.jpg"
 excerpt: "Thoughts on entropy in software development."
 description: "Thoughts on entropy in software development."
 date:   2016-05-01 21:38:52 +0200
-categories: [software development]
-tags: [software development, entropy]
+categories: [software-development]
+tags: [software development, entropy, technical debt]
 ---
 
 The second law of thermodynamics is one of the most fundamental empirical natural laws in our universe. It states that entropy, in a closed system where energy is conserved, can only increase with time.

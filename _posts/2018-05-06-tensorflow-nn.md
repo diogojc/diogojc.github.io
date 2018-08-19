@@ -6,8 +6,8 @@ image: "/assets/2018-05-06-tensorflow-nn/images/mlp.png"
 excerpt: "Using perceptrons and multi layer perceptrons in tensorflow to create decision boundaries on linear and non-linear datasets."
 description: "Using perceptrons and multi layer perceptrons in tensorflow to create decision boundaries on linear and non-linear datasets."
 date:   2018-05-06 21:34:52 +0200
-categories: ai
-tags: [tensorflow, neural networks, optimization]
+categories: [machine-learning, neural-networks, tensorflow]
+tags: [machine learning, tensorflow, neural networks, optimization, perceptron, mlp, multi layer perceptron]
 ---
 
 TensorFlow is then an engine to apply optimization on arbitrary computation graphs. This task is at the core of most machine learning algorithms where we find the parameters for a that combined with existing data produce good predictions. The objective is to then apply the learned function and parameters to new data to predict outcomes.

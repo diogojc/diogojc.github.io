@@ -6,8 +6,8 @@ image: "/assets/2018-05-01-tensorflow-basics/images/banner.jpg"
 excerpt: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 description: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 date:   2018-05-01 21:38:52 +0200
-categories: ai
-tags: [tensorflow, neural networks, optimization]
+categories: [machine-learning, neural-networks, tensorflow]
+tags: [machine-learning, tensorflow, neural networks, optimization]
 ---
 In this post I want to lay out the fundamentals for my understanding of how to work further with [TensorFlow][tensorflow-url].
 

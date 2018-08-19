@@ -6,7 +6,7 @@ image: "/assets/2018-08-16-tensorflow-fcn/images/segmentation2.png"
 excerpt: "Implementing Fully Convolutional Neural Network (FCNN) U-Net in Tensorflow for image segmentation."
 description: "Implementing Fully Convolutional Neural Network (FCNN) U-Net in Tensorflow for image segmentation."
 date:   2018-08-16 22:52:00 +0200
-categories: ai
+categories: [machine-learning, neural-networks, tensorflow]
 tags: [tensorflow, neural networks, image, convolution, coco, segmentation, fcnn, u-net]
 ---
 
