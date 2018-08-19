@@ -4,8 +4,4 @@ title: About
 permalink: /about/
 ---
 
-My name is Diogo Costa.
-
-This is a blog were I will organize my thoughts on certain topics and share it with the public and future self.
-
-These topics include Software Engineering and Artificial Intelligence.
+| ![Diogo Costa](/assets/about/me.jpeg) | My name is Diogo Costa and here I organize and share my thoughts on certain topics with everyone and future self. These topics include Software Engineering and Machine Learning.
