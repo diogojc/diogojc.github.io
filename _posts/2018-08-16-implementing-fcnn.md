@@ -63,7 +63,7 @@ This going back and forth forces the python runtime and tensorflow to exchange c
 
 This is the reason for using the Tensorflow Data API. Using the TFRecord I will serialize all the training data using *Protobuf* in a single file that will be hooked up directly to the computation graph using a queue and multiple threads.
 
-First download the [train/eval coco dataset from 2017][coco2017-download-url] (including [annotations][coco2017-annotations-download-url]). 
+First download the [COCO Train Images dataset for 2017][coco2017-download-url] (including [its annotations][coco2017-annotations-download-url]). 
 
 ### Converting COCO dataset to TFRecord file
 We will create a TFRecord file with the data in the representation we want to use in Tensorflow.
@@ -338,7 +338,7 @@ You can download the entire source code [here for the dataset conversion][cocoTo
 [u-net-paper-url]: https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/
 [u-net-website-url]: https://lmb.informatik.uni-freiburg.de/people/ronneber/u-net/
 [convolutions-url]: https://github.com/vdumoulin/conv_arithmetic
-[coco2017-download-url]: https://localhost
-[coco2017-annotations-download-url]: https://localhost
+[coco2017-download-url]: http://images.cocodataset.org/zips/train2017.zip
+[coco2017-annotations-download-url]: http://images.cocodataset.org/annotations/annotations_trainval2017.zip
 [cocoToTFRecords-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-implementing-fcnn/code/cocoToTFRecords.py
 [fcn-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-implementing-fcnn/code/fcnn.py
