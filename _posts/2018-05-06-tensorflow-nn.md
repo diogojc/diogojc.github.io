@@ -1,7 +1,7 @@
 ---
 layout: post
 author: diogojc
-title:  "TensorFlow for Neural Networks"
+title:  "TensorFlow Basics (2/2): Neural Networks"
 image: "/assets/2018-05-06-tensorflow-nn/images/mlp.png"
 excerpt: "Using perceptrons and multi layer perceptrons in tensorflow to create decision boundaries on linear and non-linear datasets."
 description: "Using perceptrons and multi layer perceptrons in tensorflow to create decision boundaries on linear and non-linear datasets."
@@ -10,16 +10,18 @@ categories: [machine-learning, neural-networks, tensorflow]
 tags: [machine learning, tensorflow, neural networks, optimization, perceptron, mlp, multi layer perceptron]
 ---
 
-TensorFlow is then an engine to apply optimization on arbitrary computation graphs. This task is at the core of most machine learning algorithms where we find the parameters for a that combined with existing data produce good predictions. The objective is to then apply the learned function and parameters to new data to predict outcomes.
+As I wrote in [the previous post]({% post_url 2018-05-01-tensorflow-basics %}), TensorFlow is then an engine to apply optimization on arbitrary computation graphs. This task is at the core of most machine learning algorithms where we find the parameters for a that combined with existing data produce good predictions. The objective is to then apply the learned function and parameters to new data to predict outcomes.
 
 
-# Classification on linear structure
+## Classification on linear structure
 Let's first use TensorFlow to find a decision boundary on a dataset that is linearly separable.
 
 We will use a [Perceptron][perceptron-url] to do this. In short the perceptron **function** outputs a number between 0 and 1 based on a linear combination of the inputs of the function like illustrated bellow.
 
-![Perceptron]({{ "https://upload.wikimedia.org/wikipedia/commons/8/8c/Perceptron_moj.png"}})
-
+{% include figure.html
+    url="https://upload.wikimedia.org/wikipedia/commons/8/8c/Perceptron_moj.png"
+    description="Perceptron"
+%}
 
 Defining this in tensorflow goes like:
 
@@ -61,16 +63,22 @@ y_newdata = sess.run(a, feed_dict={X: X_newdata}) > 0.5
 
 Bellow is an illustration of the decision boudary that the perceptron learns. Full source code [here][perceptroncode-url].
 
-![Perceptron output]({{ "/assets/2018-05-06-tensorflow-nn/images/perceptron_output.png" | absolute_url }})
+{% include figure.html
+    url="/assets/2018-05-06-tensorflow-nn/images/perceptron_output.png"
+    description="Decision boundary for linearly separable dataset."            
+%}
 
-# Classification on non-linear structure
+## Classification on non-linear structure
 Let's now use TensorFlow to find a decision boundary on a dataset that is **NOT** linearly separable.
 
 Building on the previous example I will build a [multi layer perceptron neural network][mlp-url]. While before we had a vector with the weights of the perceptron now we will have a matrix with weights of multiple perceptrons.
 Also the output of the perceptrons will feed to other perceptrons in layers with the final layer outputing a number between 0 and 1.
 This combination of multi layered perceptrons allows for the network as a whole to learn non-linear decision boundaries. 
 
-![Multilayer Perceptron]({{ "/assets/2018-05-06-tensorflow-nn/images/mlp.png" | absolute_url}})
+{% include figure.html
+    url="/assets/2018-05-06-tensorflow-nn/images/mlp.png"
+    description="Multi Layer Perceptron"
+%}
 
 {% highlight python %}
 def CreateLayer(previousLayer, perceptronCount):
@@ -105,9 +113,13 @@ with tf.Session() as sess:
 
 Bellow is an illustration of the decision boudary that the perceptron learns. Full source code [here][mlpcode-url].
 
-![Decision boundary for non linear dataset]({{ "/assets/2018-05-06-tensorflow-nn/images/perceptron_output2.png" | absolute_url }})
+{% include figure.html
+    url="/assets/2018-05-06-tensorflow-nn/images/perceptron_output2.png"
+    description="Decision boundary for non linearly separable dataset"
+%}
 
-[Next up]({{ site.baseurl }}{% post_url 2018-06-06-tensorflow-cnn %}) we will create diferent architectures then the one in the multilayer perceptron to decrease complexity and take advantage of existing structure in the data.
+## Next
+[Next up]({% post_url 2018-06-06-implementing-cnn %}) we will create diferent architectures then the one in the multilayer perceptron to decrease complexity and take advantage of existing structure in the data.
 
 [perceptron-url]: https://en.wikipedia.org/wiki/Perceptron
 [perceptroncode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-05-06-tensorflow-nn/code/perceptron.py

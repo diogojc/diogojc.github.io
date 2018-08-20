@@ -1,8 +1,8 @@
 ---
 layout: post
 author: diogojc
-title:  "TensorFlow for Fully Convolutional Neural Networks"
-image: "/assets/2018-08-16-tensorflow-fcn/images/segmentation2.png"
+title:  "Implementing a Fully Convolutional Neural Network"
+image: "/assets/2018-08-16-implementing-fcnn/images/segmentation2.png"
 excerpt: "Implementing Fully Convolutional Neural Network (FCNN) U-Net in Tensorflow for image segmentation."
 description: "Implementing Fully Convolutional Neural Network (FCNN) U-Net in Tensorflow for image segmentation."
 date:   2018-08-16 22:52:00 +0200
@@ -12,7 +12,7 @@ tags: [tensorflow, neural networks, image, convolution, coco, segmentation, fcnn
 
 ## Motivation for Fully Convolutional Neural Networks
 
-When I created a convolutional neural network for digit recognition at some point I flattened the 2D structure to a 1D structure representing the structure of the predictions that I cared about, which was a sequence from 0 to 9 (1D).
+When I created a convolutional neural network for digit recognition in [the previous post]({% post_url 2018-06-06-implementing-cnn %}) at some point I flattened the 2D structure to a 1D structure representing the structure of the predictions that I cared about, which was a sequence from 0 to 9 (1D).
 
 For other tasks the predictions I care about might have different dimensionalities. If I would like to know what class or classes each pixel belongs to I would be doing what is called image segmentation and the structure of predictions would resemble the same structure as the input image. This is the motivation for Fully Convolutional Neural Networks (FCNN). At no point do we want to flatten the initial structure of the data and loose that information, therefore convolutions are used throught the network up to (and including) the prediction layer.
 
@@ -27,8 +27,8 @@ For simplicity the network I'll create will learn how to detect pixels that belo
 Bellow are illustrations from the [COCO Dataset][cocodataset-url] that show images overlayed with masks of different colors representing different instances of different classes. These are manually created and although they are actually instance segmented data it will serve as ground truth to train a neural network used for image segmentation.
 
 {% include figures.html
-    url1="/assets/2018-08-16-tensorflow-fcn/images/segmentation1.png" 
-    url2="/assets/2018-08-16-tensorflow-fcn/images/segmentation2.png" description="cat and two chairs (left), two dogs, human and frisbee (right)"
+    url1="/assets/2018-08-16-implementing-fcnn/images/segmentation1.png" 
+    url2="/assets/2018-08-16-implementing-fcnn/images/segmentation2.png" description="cat and two chairs (left), two dogs, human and frisbee (right)"
 %}
 
 ## Methodology
@@ -42,7 +42,7 @@ At a very high level the way I like to think about this type of architecture is 
 Bellow is an illustration from the paper where you can see the left and right part as the encoding and decoding bits forming a U shape.
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/u-net-architecture.png" description="U-Net architecture with encoding and decoding portions." 
+    url="/assets/2018-08-16-implementing-fcnn/images/u-net-architecture.png" description="U-Net architecture with encoding and decoding portions." 
 %}
 
 A remark on the "up convolution" (or transposed convolution) operator in the network. This is actually a normal convolution that is built in a way that the output is actually bigger then the input.
@@ -160,7 +160,7 @@ I will create 5 methods that will represent the 5 basic blocks in the architectu
 Using these blocks I will then build the Tensorflow graph implementing the U-Net architecture.
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/convolutions.png" description="conv 3x3, ReLU" 
+    url="/assets/2018-08-16-implementing-fcnn/images/convolutions.png" description="conv 3x3, ReLU" 
 %}
 
 {% highlight python %}
@@ -181,7 +181,7 @@ def convolutions(inputLayer, numChannels):
 {% endhighlight %}
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/merge.png" description="copy and crop" 
+    url="/assets/2018-08-16-implementing-fcnn/images/merge.png" description="copy and crop" 
 %}
 
 {% highlight python %}
@@ -197,7 +197,7 @@ def mergeLayers(inputLayer, siblingLayer):
 {% endhighlight %}
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/maxpool.png" description="max pool 2x2" 
+    url="/assets/2018-08-16-implementing-fcnn/images/maxpool.png" description="max pool 2x2" 
 %}
 
 {% highlight python %}
@@ -206,7 +206,7 @@ def maxPool(inputLayer):
 {% endhighlight %}
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/upconvolutions.png" description="up-conv 2x2" 
+    url="/assets/2018-08-16-implementing-fcnn/images/upconvolutions.png" description="up-conv 2x2" 
 %}
 
 {% highlight python %}
@@ -221,7 +221,7 @@ def upConvolution(inputLayer, numChannels):
 {% endhighlight %}
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/output.png" description="conv 1x1" 
+    url="/assets/2018-08-16-implementing-fcnn/images/output.png" description="conv 1x1" 
 %}
 
 {% highlight python %}
@@ -304,13 +304,13 @@ $ tensorboard --logdir logs/ --debugger_port 6064 --port 6006
 You should see the bellow graph representation of the network
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/unet_tensorboard.png" description="Tensorboard graph (click to expand)" 
+    url="/assets/2018-08-16-implementing-fcnn/images/unet_tensorboard.png" description="Tensorboard graph (click to expand)" 
 %}
 
 Also in Tensorboard you should see the loss function decrease as the network learns to detect cats in the training data like bellow.
 
 {% include figure.html
-    url="/assets/2018-08-16-tensorflow-fcn/images/costfunction.png" description="Binary cross entropy over training time" 
+    url="/assets/2018-08-16-implementing-fcnn/images/costfunction.png" description="Binary cross entropy over training time" 
 %}
 
 Using a GPU for this is a requisite to perform the training in usefull time.
@@ -326,8 +326,8 @@ To use a GPU (if one exists) is done when creating the session like the example 
 In the *Images* section of Tensorboard you should also see something like bellow as the network makes better and better predictions to where cats are in the picture.
 
 {% include figures.html
-    url1="/assets/2018-08-16-tensorflow-fcn/images/cat.png"
-    url2="/assets/2018-08-16-tensorflow-fcn/images/catPrediction.png" 
+    url1="/assets/2018-08-16-implementing-fcnn/images/cat.png"
+    url2="/assets/2018-08-16-implementing-fcnn/images/catPrediction.png" 
     description="572x572x3 input (left) 388x388x1 prediction (right)"
 %}
 
@@ -340,5 +340,5 @@ You can download the entire source code [here for the dataset conversion][cocoTo
 [convolutions-url]: https://github.com/vdumoulin/conv_arithmetic
 [coco2017-download-url]: https://localhost
 [coco2017-annotations-download-url]: https://localhost
-[cocoToTFRecords-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-tensorflow-fcn/code/cocoToTFRecords.py
-[fcn-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-tensorflow-fcn/code/fcn.py
+[cocoToTFRecords-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-implementing-fcnn/code/cocoToTFRecords.py
+[fcn-code-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-08-16-implementing-fcnn/code/fcnn.py

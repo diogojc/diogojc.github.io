@@ -1,7 +1,7 @@
 ---
 layout: post
 author: diogojc
-title:  "TensorFlow basics"
+title:  "TensorFlow Basics (1/2): Computation graph"
 image: "/assets/2018-05-01-tensorflow-basics/images/banner.jpg"
 excerpt: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 description: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
@@ -9,19 +9,21 @@ date:   2018-05-01 21:38:52 +0200
 categories: [machine-learning, neural-networks, tensorflow]
 tags: [machine-learning, tensorflow, neural networks, optimization]
 ---
-In this post I want to lay out the fundamentals for my understanding of how to work further with [TensorFlow][tensorflow-url].
+
+Here I want to lay out the fundamental mechanics of how to work with [TensorFlow][tensorflow-url].
 
 As far as I understand TensorFlows biggest proposition is that you can find the parameters that miminize/maximize a given function without having to specify it's gradients.
-When using TensorFlow to train neural networks this is particularly handy for the backpropagation step with custom activation and cost functions.
 
-# Importing TensorFlow
+When using TensorFlow to train neural networks (a complex function) this is particularly handy for the [backpropagation](https://en.wikipedia.org/wiki/Backpropagation) steps with arbitrary architectures, activations and cost functions.
+
+## Importing TensorFlow
 
 The first thing necessary is to load the library. I prefer to use the shorter 'tf' alias.
 {% highlight python %}
 import tensorflow as tf
 {% endhighlight %}
 
-# Evaluating a function
+## Evaluating a function
 
 Before trying to optimize functions lets just try to represent a function with parameters and evaluate it.
 Take the $$y$$ function bellow:
@@ -50,7 +52,7 @@ This should produce:
 [14.]
 {% endhighlight %}
 
-# Finding the parameters that minimize a function
+## Finding the parameters that minimize a function
 
 Let's now consider the following function:
 
@@ -82,8 +84,8 @@ We see the number bellow which is the value for $$x$$ that TensorFlow found to b
 [11.97526]
 {% endhighlight %}
 
-# Next
-[Next]({{ site.baseurl }}{% post_url 2018-05-06-tensorflow-nn %}) I will write how to use this basis to train a neural network.
+## Next
+[Next]({% post_url 2018-05-06-tensorflow-nn %}) I will write how to use this basis to train a neural network.
 
 [tensorflow-url]: https://www.tensorflow.org/
 

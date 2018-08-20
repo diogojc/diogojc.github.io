@@ -4,4 +4,12 @@ title: About
 permalink: /about/
 ---
 
-| ![Diogo Costa](/assets/about/me.jpeg) | My name is Diogo Costa and here I organize and share my thoughts on certain topics with everyone and future self. These topics include Software Engineering and Machine Learning.
+![Diogo Costa](/assets/about/me.jpg){: style="display:block; margin:auto"}
+
+My name is Diogo Costa. I am a Portuguese guy living in the Netherlands.
+
+I use this blog to write down thoughts, notes or work that I think might be worthy to share with others or future self.
+
+Expect to read here often about Software development and Machine Learning.
+
+Diogo.

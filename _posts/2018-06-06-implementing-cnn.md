@@ -1,8 +1,8 @@
 ---
 layout: post
 author: diogojc
-title:  "TensorFlow for Convolutional Neural Networks"
-image: "/assets/2018-06-06-tensorflow-cnn/images/lenet-5.png"
+title:  "Implementing a Convolutional Neural Network"
+image: "/assets/2018-06-06-implementing-cnn/images/lenet-5.png"
 excerpt: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
 description: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
 date:   2018-06-06 17:33:00 +0200
@@ -12,7 +12,7 @@ tags: [tensorflow, neural networks, image, convolution]
 
 # The problems with multilayer perceptrons
 
-One of the problems with multilayer perceptrons (MLPs) is that they do not take advantage of existing spatial/temporal structures in the data. The other is because every node in a layer is connected to every other node in the next layer the number of parameters that must be learned quickly becomes unwieldy to perform optimization in usefull time.
+One of the problems with multilayer perceptrons (MLPs) in [the previous post]({% post_url 2018-05-06-tensorflow-nn %}) is that they do not take advantage of existing spatial/temporal structures in the data. The other is because every node in a layer is connected to every other node in the next layer the number of parameters that must be learned quickly becomes unwieldy to perform optimization in usefull time.
 New architectures of neural networks like convolutional neural networks have been very successfull by tackling these two problems.
 
 # Convolutional neural networks
@@ -27,7 +27,10 @@ Although it might seem like this neural network would miss non-local relationshi
 
 The word convolution in these networks comes from the fact that activations of a layer are [convolved][convolution-url] with these filters to generate the activations for the next layer. Bellow is an animation of how this works in practice.
 
-![Convolution operation]({{ "/assets/2018-06-06-tensorflow-cnn/images/3D_Convolution_Animation.gif" | absolute_url }})
+{% include figure.html
+    url="/assets/2018-06-06-implementing-cnn/images/3D_Convolution_Animation.gif"
+    description="Convolution operation (1 channel)"
+%}
 
 In the edges of the input layer there isn't enough data to perform a convolution operation. We can either skip these activations (which will change the size of the layer) or specify a padding $$p$$ to fill up data so it is possible to perform a convolution with the edge at the center (and keep the same dimensionality in the "output" layer).
 Stride $$s$$ is how big a jump the convolution operator takes between convolutions. Which in the example above was 1.
@@ -39,7 +42,10 @@ $$n=\frac{n^{l-1}+2*p-f}{s}+1$$
 
 # Example convolution neural network (LeNet-5)
 
-![Lenet-5]({{ "/assets/2018-06-06-tensorflow-cnn/images/lenet-5.png" | absolute_url }})
+{% include figure.html
+    url="/assets/2018-06-06-implementing-cnn/images/lenet-5.png"
+    description="Lenet-5 architecture."
+%}
 
 Above is an example of a Convolutional Neural Network known as [Lenet-5][lenet-url].
 
@@ -117,9 +123,12 @@ with tf.Session() as sess:
 
 After some time this network should approach 99% accuracy in classifying grey images of handwritten digits. Download the full code [here][cnncode-url].
 
-This post was about creating a neural network that takes advantage of the convolutional operator but ultimately ends up with a traditional multi layer perceptron. In the [next post]({{ site.baseurl }}{% post_url 2018-06-06-tensorflow-cnn %}) I'll discuss why you would want to do without the fully connected approach in the last layers and build a network that contains convolutions from beginning to end.
+## Next
+This post was about creating a neural network that takes advantage of the convolutional operator but ultimately ends up with a traditional multi layer perceptron for the output.
+
+In the [next post]({% post_url 2018-08-16-implementing-fcnn %}) I'll discuss why you would want to do without the fully connected approach in the last layers and build a network that contains convolutions from beginning to end.
 
 [convolution-url]: https://en.wikipedia.org/wiki/Convolution
 [lenet-url]: http://yann.lecun.com/exdb/lenet/
 [mnist-url]: http://yann.lecun.com/exdb/mnist/
-[cnncode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-06-06-tensorflow-cnn/code/mnistcnn.py
+[cnncode-url]: https://github.com/diogojc/diogojc.github.io/blob/master/assets/2018-06-06-implementing-cnn/code/mnistcnn.py
