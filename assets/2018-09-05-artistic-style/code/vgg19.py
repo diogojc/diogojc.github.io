@@ -1,7 +1,40 @@
 import tensorflow as tf
+from keras.applications.vgg19 import VGG19
+
+def getWeights():
+    with tf.Graph().as_default():
+        weights = VGG19(weights='imagenet', include_top=False).get_weights()
+    return weights
 
 
 def getActivations(X, weights, debug=False):
+    layers = [2, 2, 4, 4, 1]
+    activations = {}
+    w = 0
+    for i in range(len(layers)):
+        for j in range(layers[i]):
+            with tf.name_scope("block{}_{}".format(i+1, j+1)):
+                conv_W = tf.constant(weights[w], name="W")
+                conv_b = tf.constant(weights[w+1], name="b")
+                conv = tf.nn.conv2d(X,
+                                    conv_W,
+                                    strides=[1, 1, 1, 1],
+                                    padding='SAME') + conv_b
+                relu = tf.nn.relu(conv)
+                activations["relu{}_{}".format(i+1, j+1)] = relu
+                if debug:
+                    tf.summary.histogram("weights", conv_W)
+                    tf.summary.histogram("bias", conv_b)
+                    tf.summary.histogram("relu", relu)
+                X = relu
+                w += 2
+        if i+1 is not 5:
+            with tf.name_scope("pool{}".format(i+1)):
+                X = tf.nn.pool(X, [2, 2], "AVG", "VALID", strides=[2, 2])
+    return activations
+
+
+def getActivations2(X, weights, debug=False):
     # Block 1
     with tf.name_scope("conv1_1"):
         conv1_1_W = tf.constant(weights[0], name="W")
