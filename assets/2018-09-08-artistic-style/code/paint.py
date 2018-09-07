@@ -13,11 +13,12 @@ STYLE_LAYERS = ["relu1_1", "relu2_1", "relu3_1", "relu4_1", "relu5_1"]
 trainedWeights = getWeights()
 
 # content image
-p = getImageForVGG("content.jpg")
+h, w = (640, 480)
+p = getImageForVGG("content.jpg", h, w)
 # style image
-a = getImageForVGG("style.jpg")
+a = getImageForVGG("style.jpg", h, w)
 # generated image
-x = getRandomImageForVGG()
+x = getRandomImageForVGG(h, w)
 
 # number of channels
 N = {}
@@ -68,15 +69,15 @@ with tf.Graph().as_default():
 
     with tf.name_scope("loss"):
         contentLoss = reduce(tf.add,
-                             [ContentLoss(F[l], P[l]) for l in CONTENT_LAYERS])
+                              [ContentLoss(F[l], P[l]) for l in CONTENT_LAYERS])
         styleLoss = reduce(tf.add,
                            [StyleLoss(A[l],
                                       G[l],
                                       M[l],
                                       N[l]) for l in STYLE_LAYERS])
         styleLoss /= len(STYLE_LAYERS)
-        alpha = 10e-4
-        beta = 1
+        alpha = 10e-5
+        beta = 5
         loss = alpha * contentLoss + beta * styleLoss
 
     optimizer = tf.train.AdamOptimizer(5).minimize(loss, var_list=[x])
@@ -85,8 +86,8 @@ with tf.Graph().as_default():
     with tf.Session(config=config) as sess:
         writer = tf.summary.FileWriter("logs", sess.graph)
         tf.summary.scalar("loss", loss)
-        #preview = tf.concat([x, p, a], axis=2)[..., ::-1]
-        tf.summary.image("preview", x[..., ::-1], max_outputs=1)
+        preview = tf.concat([x, p, a], axis=2)[..., ::-1]
+        tf.summary.image("preview", preview, max_outputs=1)
         summaryOp = tf.summary.merge_all()
         sess.run(tf.global_variables_initializer())
 
