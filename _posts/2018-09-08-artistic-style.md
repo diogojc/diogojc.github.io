@@ -5,7 +5,7 @@ title:  "Implementing a neural algorithm of artistic style"
 image: "/assets/2018-09-08-artistic-style/images/thumbnail.png"
 excerpt: "Implementing a neural algorithm for artistic style."
 description: "Implementing a neural algorithm for artistic style."
-date:   2018-09-07
+date:   2018-09-08
 categories: [machine-learning, neural-networks, tensorflow]
 tags: [tensorflow, neural networks, image, convolution, artistic, style, creation, creative, art, painting]
 ---
