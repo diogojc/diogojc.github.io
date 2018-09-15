@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![Diogo Costa](/assets/about/me.jpg){: style="display:block; margin:auto"}
+![Diogo Costa](/assets/about/me.png){: style="display:block; margin:auto"}
 
 My name is Diogo Costa. I am a Portuguese guy living in the Netherlands.
 
