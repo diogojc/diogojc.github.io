@@ -4,12 +4,6 @@ import numpy as np
 import pdb
 
 
-def normalizeWord(w):
-    if None:
-        raise Exception("word cannot be None")
-    return ''.join(w.split()).lower()
-
-
 def init():
     word_to_index = dict()
     embeddings = []
@@ -26,13 +20,17 @@ def init():
             embeddings.append(representation)
 
     _WORD_NOT_FOUND = [0.0] * len(representation)
-    _LAST_INDEX = i + 1
-    word_to_index = defaultdict(lambda: _LAST_INDEX, word_to_index)
+    word_to_index = defaultdict(lambda: word_to_index["unk"], word_to_index)
     embeddings = np.array(embeddings + [_WORD_NOT_FOUND])
     return word_to_index, embeddings
 
 
 def createSentimentDataset(word_to_index):
+    def normalizeWord(w):
+        if None:
+            raise Exception("word cannot be None")
+        return ''.join(w.split()).lower()
+
     y = dict()
     with open("sentiment_labels.txt", 'r', encoding="utf-8") as y_file:
         next(y_file)  # skip header
@@ -69,16 +67,15 @@ def createSentimentDataset(word_to_index):
 
 def createEmbeddingsDataset(embeddings):
     writer = tf.python_io.TFRecordWriter("embeddings.tfrecord")
-    pdb.set_trace()
-    features = {
-        "embeddings": tf.train.Feature(bytes_list=tf.train.BytesList(value=[embeddings.tostring()])),
-        "height": tf.train.Feature(int64_list=tf.train.Int64List(value=[embeddings.shape[0]])),
-        "width": tf.train.Feature(int64_list=tf.train.Int64List(value=[embeddings.shape[1]])),
-    }
-    example = tf.train.Example(features=tf.train.Features(feature=features))
-    writer.write(example.SerializeToString())
+    for i in range(embeddings.shape[0]):
+        features = {
+            "embeddings": tf.train.Feature(bytes_list=tf.train.BytesList(value=[embeddings[i, :].tostring()])),
+        }
+        example = tf.train.Example(features=tf.train.Features(feature=features))
+        writer.write(example.SerializeToString())
+    writer.close()
 
 
 wti, embeddings = init()
-# createSentimentDataset(wti)
+createSentimentDataset(wti)
 createEmbeddingsDataset(embeddings)
