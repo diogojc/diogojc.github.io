@@ -1,2 +1,4 @@
 *.tfrecord
 *.txt
+*.npy
+logs
