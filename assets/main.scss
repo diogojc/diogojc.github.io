@@ -1,7 +1,4 @@
----
----
-
-@import "minima";
+@import "{{ site.theme }}";
 
 .figure table { 
 	width:100%;
