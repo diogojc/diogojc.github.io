@@ -2,7 +2,7 @@
 layout: post
 author: diogojc
 title:  "Implementing a Recurring Neural Network for sentiment analysis"
-image: "/assets/2018-09-08-artistic-style/images/thumbnail2.png"
+image: "/2018-09-08-artistic-style/images/thumbnail2.png"
 excerpt: "Implementing a Recurring Neural Network for sentiment analysis"
 description: "Implementing a Recurring Neural Network for sentiment analysis"
 date:   2019-06-15

@@ -2,7 +2,7 @@
 layout: post
 author: diogojc
 title:  "Implementing a Convolutional Neural Network"
-image: "/assets/2018-06-06-implementing-cnn/images/lenet-5.png"
+image: "/2018-06-06-implementing-cnn/images/lenet-5.png"
 excerpt: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
 description: "Taking advantage of spatial properties in data with convolutional neural networks and Tensorflow to recognize digits."
 date:   2018-06-06 17:33:00 +0200

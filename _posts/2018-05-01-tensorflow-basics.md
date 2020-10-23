@@ -2,7 +2,7 @@
 layout: post
 author: diogojc
 title:  "TensorFlow Basics (1/2): Computation graph"
-image: "/assets/2018-05-01-tensorflow-basics/images/banner.jpg"
+image: "/2018-05-01-tensorflow-basics/images/banner.jpg"
 excerpt: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 description: "Tensorflow introduction as an optimization library for arbitrary computation graphs."
 date:   2018-05-01 21:38:52 +0200

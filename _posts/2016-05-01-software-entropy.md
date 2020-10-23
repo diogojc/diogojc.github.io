@@ -1,8 +1,8 @@
 ---
 layout: post
 author: diogojc
-title:  "Entropy in Sotware Development"
-image: "/assets/2016-05-01-software-entropy/banner.jpg"
+title:  "Entropy in Software Development"
+image: "/2016-05-01-software-entropy/banner.jpg"
 excerpt: "Thoughts on entropy in software development."
 description: "Thoughts on entropy in software development."
 date:   2016-05-01 21:38:52 +0200
@@ -24,13 +24,13 @@ I find it fun to try to extrapolate this concept to software development and to 
 
 A software application organizes intent, design, technology and data into one of the infinitely possible configurations towards solving some given problem.
 
-Economic, organizational and human interactions and behaviour are both highly unpredictable and the main drivers for change within software development.
+Economic, organizational and human interactions and behavior are both highly unpredictable and the main drivers for change within software development.
 
 Although there are possibly others, I argue, these are the biggest entropic forces and much like in the natural world they are always trying to raise entropy throughout time within your software application.
 
-What does high entropy within a software application look like? If software is randomly changed in random directions it will more likely start outputting random behaviour and become harder to change.
+What does high entropy within a software application look like? If software is randomly changed in random directions it will more likely start outputting random behavior and become harder to change.
 
-Symptoms include slower time to market, fixing bad behaviour introduces more bad behaviour, hard to infer what the problem is looking at the solution… You start to see most of the characteristics of what’s called in software development lingo the “big ball of mud” anti-pattern.
+Symptoms include slower time to market, fixing bad behavior introduces more bad behavior, hard to infer what the problem is looking at the solution… You start to see most of the characteristics of what’s called in software development lingo the “big ball of mud” anti-pattern.
 
 The pervasiveness of this anti-pattern is a testament of the entropic forces hard at work in software development.
 
@@ -40,7 +40,7 @@ This, does not mean that all projects will die the entropic death. It just means
 
 I believe it’s as impossible to remove the randomness of the biggest entropic forces in software development as is impossible to fight the second law of thermodynamics. The single best thing we can do to fight entropy is to make good design decisions, do them often and do them systemically.
 
-A design decision is therefore leaving less to chance and a good design decision is leaving less to chance that the likelihood of unexpected behaviour and time needed to change increases.
+A design decision is therefore leaving less to chance and a good design decision is leaving less to chance that the likelihood of unexpected behavior and time needed to change increases.
 
 Although the importance of design comes as no surprise, viewing design coldly as a tool to reduce entropy is, I think, a good thought exercise.
 

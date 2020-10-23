@@ -1,8 +1,8 @@
 ---
-layout: default
+layout: post
 author: diogojc
 title:  "Insights platform for 'data-driven' organizations"
-image: "/assets/2018-09-08-artistic-style/images/thumbnail2.png"
+image: "/2018-09-08-artistic-style/images/thumbnail2.png"
 excerpt: "how a highly diverse and segmented workforce within an organization can make more and better decisions by combining their knowledge with access to data and technology."
 description: "This is about organizations becoming more data driven.
 More specifically, it's about how a highly diverse and segmented workforce within an organization can make more and better decisions by combining their knowledge with access to data and technology."

@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+image: "/about/me.png"
 ---
 
 ![Diogo Costa](/assets/about/me.png){: style="display:block; margin:auto"}

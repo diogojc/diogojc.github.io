@@ -2,7 +2,7 @@
 layout: post
 author: diogojc
 title:  "Implementing a neural algorithm of artistic style"
-image: "/assets/2018-09-08-artistic-style/images/thumbnail2.png"
+image: "/2018-09-08-artistic-style/images/thumbnail2.png"
 excerpt: "Implementing a neural algorithm for artistic style."
 description: "Implementing a neural algorithm for artistic style."
 date:   2018-09-08
