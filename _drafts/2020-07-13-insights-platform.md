@@ -119,46 +119,42 @@ For individuals and teams to have a data based approach to decision making at le
 
 The platform will require them to bring the domain knowledge they already have and will focus on serving the other two areas, data and the technology.
 
-![Needs](/assets/2020-07-13-insights-platform/needs.png)
+![Needs](/assets/2020-07-13-insights-platform/needs.png "cacaca asdas ")
 
 These areas will be translated into three services resting in a common foundation.
 
 ![Services](/assets/2020-07-13-insights-platform/services.png)
 
-The Data (as-a) service will strive to deliver access to high value, integrated and interpretable datasets anywhere in the organization.
+The Data (as-a) service provides access to high value, integrated and interpretable datasets anywhere in the organization.
 
-The Environments (as-a) service will strive to deliver access to environments created on demand with provisioned and configured sets of tools or tech for anyone to discover new insights, prototype ideas and create new solutions.
+The Environments (as-a) service provides on-demand creation of environments with provisioned and configured technology for common workloads. The workloads should allow people to discover new insights, prototype ideas and create new solutions.
 
-The Solutions (as-a) service will strive to share the IP created in the platform with everyone in the organization through the form of managed multitenant solutions.
+The Solutions (as-a) service provides sharing of the IP created in the platform with everyone in the organization through the form of managed multitenant solutions.
 
 The foundation will be the result of the infrastructure, controls and processes created by the platform team to support the platform digital services. This should be the by-product of creating the services and not a goal in of itself.
 
 ### Data
-The data (as-a) service must deliver more then just data extracts from trusted transactional sources.
+The data (as-a) service must deliver data using, as much as possible, terms and relationships directly captured from the language used by the workforce through an interface, or API, that is consumable by existing tools.
 
-The added value of this service are to delivering the contents of existing data using structures that match the language used in the organization and published through interfaces that meet the criteria's of the tools in the hands of the employees.
+Because the language used to describe data is context specific so must our delivery of data. This service will consist of, possibly overlapping, sets of data, or datasets, that hold data in very narrow contexts. A context will be a specific slice of an arbitrary number of the organization sub-domains.
+This is very much like Domain Driven Design approach to break down very large models filled with ambiguity and sometimes conflicting terminology to smaller domain models living in bounded contexts tackling narrower domain problems [^5].
 
-Language, contexts and models (DDD)
-I argue data should be made available as, possibly overlapping, datasets that deliver the data in the language used by people in domain areas.
+![Bounded context](/assets/2020-07-13-insights-platform/bounded-context.png)
 
-I believe the concepts of Bounded context, domains, models and ubiquitous language are usefull
-
-In the organization data can be fitted in multiple domains and therefore be represented in ambiguous and sometimes conflicting ways. 
-
-If done right the the sourcing of data and integration might span multiple in-house and external systems.
+The argument for this approach is by having domain experts and data modelers share the same language in narrower sub-domains, it becomes easier for the experts to consume data from the produced models and for the modelers to work independently from each other in different domain areas.
 
 
+At the center of this service will therefore be the implementation of these datasets. More concretely the models, the interfaces with the outside world and how to bring the entities arriving from those interfaces into our models.
 
+Around these datasets will be the implementations of the interfaces to the outside world. These are the connections with transactional sources (pull/push, streaming/pooling, through a database or files, etc.) and the logic necessary to present this data through specific APIs (XMLA, SQL, Parquet, etc.)
 
+This approach is quite similar to the ports and adapters pattern [^6] for isolating application logic and infrastructure. The motivation is to enable the development of the models to be decoupled from the ever evolving transactional systems and user tooling.
 
-*Models at the center (ports and adapters)*
+![Ports and adapters](/assets/2020-07-13-insights-platform/ports-and-adapters.png)
 
-Data flow (raw, unified, presentation)
+Typically the broader an organizations business model the more contexts there will be to fit data into, and therefore datasets that can delivered in this service. Prioritization should be done based on demand. Although the owners of this platform are always accountable, the implementation of specific datasets can be sourced to other parts of the organization closer to the context in question.
 
-How fine/coarse grained must the models be?
-
-
-*Investing in a dataset discovery and lineage tool can be valuable but I argue that the focus should be in bringing the data closer to the language spoken in the organization and not create translation layers.*
+Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tooling for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
 
 ### Environments
 *self-service in a managed environment, acceleration of procurement and approval of tooling, rationalization of costs, standardization of support*
@@ -191,5 +187,7 @@ Here go the remarks
 
 [^4]: Manifesto for Agile Software Development, 2001 [Link](http://agilemanifesto.org/iso/en/manifesto.html)
 
-[^5]: Ports and Adapters, Alistair Cockburn 2005 [Link](http://alistair.cockburn.us/Hexagonal+architecture)
+[^5]: Bounded Context, Martin Fowler, 2014 [Link](https://martinfowler.com/bliki/BoundedContext.html)
+
+[^6]: Ports And Adapters Architecture, Alistair Cockburn 2006 [Link](http://wiki.c2.com/?PortsAndAdaptersArchitecture)
 
