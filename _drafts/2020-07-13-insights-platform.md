@@ -133,6 +133,8 @@ The Solutions (as-a) service provides sharing of the IP created in the platform 
 
 The foundation will be the result of the infrastructure, controls and processes created by the platform team to support the platform digital services. This should be the by-product of creating the services and not a goal in of itself.
 
+----------
+
 ### Data
 The data (as-a) service must deliver data using, as much as possible, terms and relationships directly captured from the language used by the workforce through an interface, or API, that is consumable by existing tools.
 
@@ -156,17 +158,60 @@ Typically the broader an organizations business model the more contexts there wi
 
 Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tooling for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
 
+----------
+
 ### Environments
-*self-service in a managed environment, acceleration of procurement and approval of tooling, rationalization of costs, standardization of support*
-Centrally managed environments are created for anyone to discover new insights, prototype ideas and create new solutions. Solutions that are globally relevant transition to the marketplace.
+The Tools (as-a) Service will provide quick access to technology for anyone to discover new insights, prototype ideas and create new solutions.
+
+The access to technology will happen through the concept of an environment. An environment is a place where technology is, or can be, provisioned and which lifecycle is tied to a project. 
+In this context a project simply means there is either time or money allocated for an individual or team to pursue the solution of a problem using data.
+These environments must therefore be provisioned quickly, on-demand by the workforce, and entirely destroyed without affecting each other.
+
+The added values of this service are:
+* Removing the procurement and provisioning effort of tooling from end users.
+* Allowing IT to apply security controls and rationalize tooling and support.
+
+When deciding how many types of environments are to be offered and what are the tools in them, there will be a duality between standardization and choice. By choice or not different users will have preferences for diverse tooling and IT will want to standardize as much as possible for rationalization purposes.
+
+![Tooling standardization vs self-service](/assets/2020-07-13-insights-platform/envs_toff.png)
+
+
+In my experience there is enough co-occurrence of tools to create environments around these groups of tools. These groups emerge from multiple latent aspects, namely differences of employee tech-savviness, project deliverables and 
+
+
+
+Examples of workloads
+    
+
+Template
+
+
+Points:
+* Deliver tools
+* Concept of environments and project lifecycle
+* Content of environment
+* Workloads and personas
+* Examples of workloads
+* Example lifecycle
+
 
 
 ![Templates and environments](/assets/2020-07-13-insights-platform/temps-envs.png)
+
+
+----------
 
 ### Solutions
 *intellectual property reuse, managed services*
 Collection of solutions, centrally managed in the platform by a global function, are ready to deliver insights on new data onboarded by a new OpCo.
 
+For situations where the IP created in an environment becomes relevant enough for another team, the platform 
+
+
+Isn't data as a service just another solution?
+Why isn't everything a marketplace solution?
+
+----------
 
 ![Environments and solutions](/assets/2020-07-13-insights-platform/envs-markt.png)
 
@@ -174,8 +219,12 @@ Collection of solutions, centrally managed in the platform by a global function,
 *role of partners*
 
 ## Remarks and discussion
-Here go the remarks
+The platform as presented should read as a guide to organizing technology in meaningful services that help the workforce make use of data in their daily work.
+The implementation and operation of such services are dependent on each organization size, structure, maturity and sourcing capabilities to name a few.
 
+Companies in industries already disrupted by software will rely less on rationalization
+
+In the end the services success relies on it's adoption.
 
 
 
