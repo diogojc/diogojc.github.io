@@ -129,7 +129,7 @@ The Data (as-a) service provides access to high value, integrated and interpreta
 
 The Environments (as-a) service provides on-demand creation of environments with provisioned and configured technology for common workloads. The workloads should allow people to discover new insights, prototype ideas and create new solutions.
 
-The Solutions (as-a) service provides sharing of the IP created in the platform with everyone in the organization through the form of managed multitenant solutions.
+The Solutions (as-a) service provides sharing of the IP created in the platform with everyone in the organization through the form of managed multi-tenant solutions.
 
 The foundation will be the result of the infrastructure, controls and processes created by the platform team to support the platform digital services. This should be the by-product of creating the services and not a goal in of itself.
 
@@ -161,38 +161,42 @@ Although I argue the investment in integrating data and making it interpretable 
 ----------
 
 ### Environments
-The Tools (as-a) Service will provide quick access to technology for anyone to discover new insights, prototype ideas and create new solutions.
 
-The access to technology will happen through the concept of an environment. An environment is a place where technology is, or can be, provisioned and which lifecycle is tied to a project. 
+#### Goal: Deliver tools
+The Tools (as-a) Service should provide quick access to technology for anyone in the organization to discover new insights and apply them in creating new solutions.
+
+#### Concept of environments and project lifecycle
+The access to technology happens through the concept of an environment. An environment is a place where technology is, or can be, provisioned and which lifecycle is tied to a project. 
 In this context a project simply means there is either time or money allocated for an individual or team to pursue the solution of a problem using data.
 These environments must therefore be provisioned quickly, on-demand by the workforce, and entirely destroyed without affecting each other.
 
-The added values of this service are:
-* Removing the procurement and provisioning effort of tooling from end users.
-* Allowing IT to apply security controls and rationalize tooling and support.
+#### Content of environment
+What should be in these environments?
 
-When deciding how many types of environments are to be offered and what are the tools in them, there will be a duality between standardization and choice. By choice or not different users will have preferences for diverse tooling and IT will want to standardize as much as possible for rationalization purposes.
+Firstly, delivery of cross-cutting concerns to all environments, e.g. access to an identity provider, connectivity to systems of data, monitoring, chargeback and security controls to name a few.
 
-![Tooling standardization vs self-service](/assets/2020-07-13-insights-platform/envs_toff.png)
+Secondly the environment will either give the user the possibility of provisioning the tool of his choosing from a catalog, or will come with a set of tools provisioned and configured.
 
-
-In my experience there is enough co-occurrence of tools to create environments around these groups of tools. These groups emerge from multiple latent aspects, namely differences of employee tech-savviness, project deliverables and 
-
+The first approach takes 
+Cloud providers have revolutionized the way software is purchased, provisioned and managed, why not take advantage of that and postpone the decision of choosing any software to the employee needing it?
 
 
-Examples of workloads
-    
 
-Template
+#### Workloads and personas
+Bellow examples of workloads I've seen often appear in multiple organizations:
+
+Combining two datasets and applying a statistics python library to build a report identifying the factors can affect a chemical production.
+
+Another example is a team of database, integration experts, modelers and analysts creating a monthly financial report.
+
+Or even another one is a team of developers and machine learning experts creating a ordering forecasting solution.
 
 
-Points:
-* Deliver tools
-* Concept of environments and project lifecycle
-* Content of environment
-* Workloads and personas
-* Examples of workloads
-* Example lifecycle
+#### Examples of workloads
+
+#### Example lifecycle and template
+
+
 
 
 
