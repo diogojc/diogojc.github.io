@@ -158,31 +158,45 @@ Typically the broader an organizations business model the more contexts there wi
 
 Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tooling for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
 
+On the topic of filling these models and interfaces with data the owners of the platform can take one of two approaches.
+  * Connect to the systems of data as they are, copy the data and map it to the models.
+  * Create an interface for ingestion and push the responsibility of connection, copying and mapping to other parts of the organization.
+In terms of ports and adapters architecture, should the platform owners be responsible for only its ports or also its adapters?
+
+Both approaches scale differently as you would expect for heterogeneous landscapes of data systems. 
+
+<span style="color:red">**architect of this part goes here**</span>.
+
+
 ----------
 
 ### Environments
 
 #### Goal: Deliver tools
-The Tools (as-a) Service should provide quick access to technology for anyone in the organization to discover new insights and apply them in creating new solutions.
+The Tools (as-a) Service should provide quick access to (software) tools, that anyone in the organization can use to discover new insights and apply them in creating new solutions.
 
 #### Concept of environments and project lifecycle
-The access to technology happens through the concept of an environment. An environment is a place where technology is, or can be, provisioned and which lifecycle is tied to a project. 
+The access to tools happens through the concept of an environment. An environment is a place where tools are, or can be, provisioned, and which lifecycle is tied to a project. 
 In this context a project simply means there is either time or money allocated for an individual or team to pursue the solution of a problem using data.
-These environments must therefore be provisioned quickly, on-demand by the workforce, and entirely destroyed without affecting each other.
+These environments must therefore be created quickly and on-demand by the workforce, and destroyed without affecting each other.
 
 #### Content of environment
-What should be in these environments?
+All environments should include non functionals like:
+  * Access to a organization wide identity provider
+  * Connectivity to relevant systems of data
+  * Monitoring
+  * Chargeback
+  * Security controls
 
-Firstly, delivery of cross-cutting concerns to all environments, e.g. access to an identity provider, connectivity to systems of data, monitoring, chargeback and security controls to name a few.
+Available tools must meet only two requirements: i) can the tool be integrated with these foundational non-functionals (above) and ii) can professional support be offered through a (internally) unified support process.
 
-Secondly the environment will either give the user the possibility of provisioning the tool of his choosing from a catalog, or will come with a set of tools provisioned and configured.
+Tools are made available to user in two ways: users can provision and configure this tooling by themselves or environments come with tools pre-provisioned and configured.
 
-The first approach takes 
-Cloud providers have revolutionized the way software is purchased, provisioned and managed, why not take advantage of that and postpone the decision of choosing any software to the employee needing it?
-
-
+By pre-provisioning and configuring the tools in
 
 #### Workloads and personas
+Environment types can be created around the co-occurrence of 
+
 Bellow examples of workloads I've seen often appear in multiple organizations:
 
 Combining two datasets and applying a statistics python library to build a report identifying the factors can affect a chemical production.
@@ -195,8 +209,7 @@ Or even another one is a team of developers and machine learning experts creatin
 #### Examples of workloads
 
 #### Example lifecycle and template
-
-
+<span style="color:red">**sequence diagram**</span>.
 
 
 
