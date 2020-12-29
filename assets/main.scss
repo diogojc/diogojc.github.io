@@ -1,9 +1,12 @@
+---
+---
 @import "{{ site.theme }}";
 
 .figure table { 
-	width:100%;
 	table-layout:fixed;
 	text-align:center;
+	margin: 0 auto;
+	width: auto;
 }
 
 .figure img

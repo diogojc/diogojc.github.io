@@ -1,16 +1,17 @@
 ---
-layout: default
+layout: post
 author: diogojc
 title:  "Insights platform for 'data-driven' organizations"
-image: "/assets/2018-09-08-artistic-style/images/thumbnail2.png"
-excerpt: "Quote here."
-description: "Summary here."
-date:   2020-10-29
-categories: [enterprise]
-tags: [data, transformation, insights, platform, IT, organization, services, analytics, lake, warehouse, embedded]
+image: "/assets/2020-12-29-insights-platform/services.png"
+excerpt: "How can a highly diverse and segmented workforce, in an organization, make more and better decisions by combining their knowledge with access to data and technology? How can the learned insights be put to work and reused across the organization? What role should Information Technology (IT) departments play in this data-driven transformation?
+This article will bring these together and propose a set of digital services through a *centralized platform open for decentralized contributions* I will refer to as Insights Platform (or simply Platform). I argue that, although not a guarantee, the services in this platform can help organizations in this transformation."
+description: "In a spectrum that begins in letting everyone 'do their thing' and ends in centralizing everything in IT, this article defends a position in the middle that allows individuals to quickly put their knowledge to work wherever they are in the organization while allowing IT to maintain safeguards, manage and bound the complexity of the underlying technology stack."
+date: 2020-12-29
+categories: [enterprise, platform]
+tags: [data, transformation, insights, platform, IT, organization, services, analytics, lake, warehouse, embedded, digital]
 ---
 
-## Executive summary
+<!-- ## Executive summary
 Data driven transformation and IT role
 Organizations struggle to organize technology into meaningful digital services
 Centralized platform open to decentralized contributions proposition
@@ -18,10 +19,10 @@ Digital services
 * Data
 * Tools
 * Solutions 
-
-conclusions
+conclusion 
 
 ----------
+-->
 
 ## Introduction
 This article is about organizations becoming more "data-driven".
@@ -112,24 +113,27 @@ Although IT can profit from Agile values and its frameworks, applying them top d
 ----------
 
 ## Insights Platform digital services
-*Overview, start with the individual needs, create services for that individual and x-functional teams, access to data, access to tools that fit his needs, ability to share outcomes and IP*
-
-
 For individuals and teams to have a data based approach to decision making at least three needs must be met. Domain knowledge, data and technology.
 
 The platform will require them to bring the domain knowledge they already have and will focus on serving the other two areas, data and the technology.
 
-![Needs](/assets/2020-07-13-insights-platform/needs.png "cacaca asdas ")
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/needs.png"
+           description="Needs."
+%}
 
 These areas will be translated into three services resting in a common foundation.
 
-![Services](/assets/2020-07-13-insights-platform/services.png)
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/services.png"
+           description="Services"
+%}
 
 The Data (as-a) service provides access to high value, integrated and interpretable datasets anywhere in the organization.
 
 The Environments (as-a) service provides on-demand creation of environments with provisioned and configured technology for common workloads. The workloads should allow people to discover new insights, prototype ideas and create new solutions.
 
-The Solutions (as-a) service provides sharing of the IP created in the platform with everyone in the organization through the form of managed multi-tenant solutions.
+The Solutions (as-a) service provides reuse of the IP created in the platform with everyone in the organization through the form of managed multi-tenant solutions.
 
 The foundation will be the result of the infrastructure, controls and processes created by the platform team to support the platform digital services. This should be the by-product of creating the services and not a goal in of itself.
 
@@ -141,7 +145,10 @@ The data (as-a) service must deliver data using, as much as possible, terms and 
 Because the language used to describe data is context specific so must our delivery of data. This service will consist of, possibly overlapping, sets of data, or datasets, that hold data in very narrow contexts. A context will be a specific slice of an arbitrary number of the organization sub-domains.
 This is very much like Domain Driven Design approach to break down very large models filled with ambiguity and sometimes conflicting terminology to smaller domain models living in bounded contexts tackling narrower domain problems [^5].
 
-![Bounded context](/assets/2020-07-13-insights-platform/bounded-context.png)
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/bounded-context.png"
+           description="Bounded Context"
+%}
 
 The argument for this approach is by having domain experts and data modelers share the same language in narrower sub-domains, it becomes easier for the experts to consume data from the produced models and for the modelers to work independently from each other in different domain areas.
 
@@ -150,13 +157,21 @@ At the center of this service will therefore be the implementation of these data
 
 Around these datasets will be the implementations of the interfaces to the outside world. These are the connections with transactional sources (pull/push, streaming/pooling, through a database or files, etc.) and the logic necessary to present this data through specific APIs (XMLA, SQL, Parquet, etc.)
 
-This approach is quite similar to the ports and adapters pattern [^6] for isolating application logic and infrastructure. The motivation is to enable the development of the models to be decoupled from the ever evolving transactional systems and user tooling.
+This approach is quite similar to the ports and adapters pattern [^6] for isolating application logic and infrastructure. The motivation is to enable the development of the models to be decoupled from the ever evolving transactional systems and end-user tools.
 
-![Ports and adapters](/assets/2020-07-13-insights-platform/ports-and-adapters.png)
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/ports-and-adapters.png"
+           description="Ports and adapters"
+%}
+
+  * Yellow: A domain context (e.g. Sales) with implementations for a data model and storage mediums.
+  * Red: Interfaces of the model with the outside world (e.g. Customer Repository).
+  * Light Blue: Implementation of data movement from outside systems into datasets (e.g. customer extraction from CRM and transactional systems).
+  * Dark Blue: Implementation of APIs for data consumption (e.g. XMLA with sales results).
 
 Typically the broader an organizations business model the more contexts there will be to fit data into, and therefore datasets that can delivered in this service. Prioritization should be done based on demand. Although the owners of this platform are always accountable, the implementation of specific datasets can be sourced to other parts of the organization closer to the context in question.
 
-Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tooling for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
+Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tools for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
 
 On the topic of filling these models and interfaces with data the owners of the platform can take one of two approaches.
   * Connect to the systems of data as they are, copy the data and map it to the models.
@@ -171,77 +186,94 @@ Both approaches scale differently as you would expect for heterogeneous landscap
 ----------
 
 ### Environments
-
-#### Goal: Deliver tools
 The Tools (as-a) Service should provide quick access to (software) tools, that anyone in the organization can use to discover new insights and apply them in creating new solutions.
 
-#### Concept of environments and project lifecycle
-The access to tools happens through the concept of an environment. An environment is a place where tools are, or can be, provisioned, and which lifecycle is tied to a project. 
+To this extent organizations do well in leveraging the built-in scalability and automation from cloud computing providers in quickly delivering and managing a wide selection of tools.
+
+The access to tools happens through the concept of an environment. An environment is a logical place where tools are, or can be, provisioned, and which lifecycle is tied to a project.
 In this context a project simply means there is either time or money allocated for an individual or team to pursue the solution of a problem using data.
 These environments must therefore be created quickly and on-demand by the workforce, and destroyed without affecting each other.
+All the tools in an environment, regardless of where they physically are, are deployed, managed, supported and decommissioned as one.
 
-#### Content of environment
-All environments should include non functionals like:
-  * Access to a organization wide identity provider
+Regardless of which tools are in these environments, all environments should include (foundational) non functionals like:
+  * Access to the organizations identity provider
   * Connectivity to relevant systems of data
   * Monitoring
   * Chargeback
   * Security controls
 
-Available tools must meet only two requirements: i) can the tool be integrated with these foundational non-functionals (above) and ii) can professional support be offered through a (internally) unified support process.
+For a tool to be available in these environments it must meet only two requirements: i) can the tool be integrated with these non-functionals (above)? and ii) can professional support be offered through a (internally) unified support process?
 
-Tools are made available to user in two ways: users can provision and configure this tooling by themselves or environments come with tools pre-provisioned and configured.
+Tools can either come provisioned and configured in the environments or the environments allow the employee to self-service that provisioning and configuration.
+Although the second approach can work well for tech-savvy employees, the first approach can speed up significantly the work of tech-savvy and non tech-savvy employees alike. To this extent the platform offers multiple environment types that cater to different workloads reoccurring often in the organization.
 
-By pre-provisioning and configuring the tools in
+Bellow are examples of workloads commonly found in organizations:
 
-#### Workloads and personas
-Environment types can be created around the co-occurrence of 
+  * Data Science experiment:
+  Extracting insights from structured or unstructured data, typically applying scientific processes and techniques from multiple disciplines like operational research, data mining, statistics, machine learning or artificial intelligence and others.
+  Typical outcomes are i) document of experiment with findings, methodology and conclusions, ii) Optimized plan that minimizes some cost function and/or ii) a trained model that can do inference on new data.
+  Such experiments include finding correlations, performing sensitivity analysis, signal processing, forecasting, image processing, classification, finding latent structures to name a few.
 
-Bellow examples of workloads I've seen often appear in multiple organizations:
+  * the Data Warehouse and BI solution:
+  Extracting, integrating, mastering and modeling data from operational data stores for further data analysis and/or visualization, often through Business Intelligence (BI) software.
+  Typical outcomes of such a solution are financial or sales dashboards and monthly reports.
 
-Combining two datasets and applying a statistics python library to build a report identifying the factors can affect a chemical production.
+  * the Smart Solution: 
+  Development of a custom solution that puts to work an insight discovered using data.
+  Often the place where predictive models from data science experiment are put to work.
+  Custom developed smart solutions can, for example, lower customer churn through better targeted campaigns, predict asset failure to maximize uptime of manufacturing processes, increase safety in workplace by using automatic hazardous conditions in video footage.
 
-Another example is a team of database, integration experts, modelers and analysts creating a monthly financial report.
+  * the Big Data Job:
+  Applying transformations and or aggregations to high volumes of data.
+  Often used tools include Apache Hadoop ecosystem software (e.g. Apache Spark) or other map-reduce orchestration software on "commodity" machines and networking, where low to no communication between worker nodes is needed.
+  Examples of big data jobs include: applying and storing a linear transformation to 1PB of images or parsing, joining and querying 20TB of log files.
 
-Or even another one is a team of developers and machine learning experts creating a ordering forecasting solution.
+  * the High Performance Computing Job:
+  Running complex calculations where low latency communication between worker nodes is necessary. Typically run on specialized hardware using, for example, InfiniBand standard and/or Graphical Processing Units (GPUs).
+  Examples include a wide range of physics simulations to test the design of new boat parts, genome sequencing, autonomous driving and deep learning.
+
+  * Workflow Automation:
+  Automating workflows and business processes to reduce manual, error prone, work and/or speed up the flow of data in an organization.
+  Traditional workflow automation development tools and Robotic Process Automation tools are relevant in this space.
 
 
-#### Examples of workloads
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/temps-envs.png"
+           description="Templates and environments"
+%}
 
-#### Example lifecycle and template
+
+For each existing or emerging workload in the organization, a template should exist with instructions of which tools in which configurations should be deployed when creating a new environment to service people doing that workload. This template should be fully machine readable and handed off to an infrastructure provisioning software when creating a new environment.
+
 <span style="color:red">**sequence diagram**</span>.
-
-
-
-![Templates and environments](/assets/2020-07-13-insights-platform/temps-envs.png)
-
 
 ----------
 
 ### Solutions
-*intellectual property reuse, managed services*
-Collection of solutions, centrally managed in the platform by a global function, are ready to deliver insights on new data onboarded by a new OpCo.
+The Solutions (as-a) Service should speed up the reuse of intellectual property (IP), created in the platform.
 
-For situations where the IP created in an environment becomes relevant enough for another team, the platform 
+The key in speeding up the reuse of IP, is by transferring the ownership of support and further development from the employee to the platform owners, allowing for different budgeting and sourcing scales.
 
+{% include figure.html
+           url="/assets/2020-12-29-insights-platform/envs-markt.png"
+           description="Environments and solutions"
+%}
 
-Isn't data as a service just another solution?
-Why isn't everything a marketplace solution?
+As part of this transition, re-hosting the IP in shared infrastructure allows for i) lowering running costs and ii) scale support for application and infrastructure separately.
+
+An example of such re-hosting would be moving all solutions IP during the transition to containers (e.g. Docker) and a container orchestration tool (e.g. Kubernetes).
+
 
 ----------
 
-![Environments and solutions](/assets/2020-07-13-insights-platform/envs-markt.png)
-
 ## Insights Platform management
-*role of partners*
+**TODO: propose different support and ownership structures**
 
 ## Remarks and discussion
+**TODO: give concrete examples and make this more data driven article**
+
 The platform as presented should read as a guide to organizing technology in meaningful services that help the workforce make use of data in their daily work.
 The implementation and operation of such services are dependent on each organization size, structure, maturity and sourcing capabilities to name a few.
-
-Companies in industries already disrupted by software will rely less on rationalization
-
-In the end the services success relies on it's adoption.
 
 
 
