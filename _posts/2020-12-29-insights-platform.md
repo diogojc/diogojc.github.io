@@ -27,13 +27,13 @@ conclusion
 ## Introduction
 This article is about organizations becoming more "data-driven".
 
-It is about how organizations can transform to systemically make decisions relying on data first and intuition second.
+It is about how organizations can transform and its workforce make better decisions using data first and intuition second.
 
-How can a highly diverse and segmented workforce, in an organization, make more and better decisions by combining their knowledge with access to data and technology?
+How can a highly diverse and segmented workforce, make more and better decisions by combining their knowledge with access to data and technology?
 How can the learned insights be put to work and reused across the organization?
 What role should Information Technology (IT) departments play in this "data-driven" transformation?
 
-This article will bring these together and propose a set of digital services through a *centralized platform open for decentralized contributions* I will refer to as Insights Platform (or simply Platform). I argue that, although not a guarantee, the services in this platform can help organizations in this transformation.
+Although every organization journey in becoming data-driven is unique and multi-faceted, in my experience, there is at least one aspect that can accelerate and bring clarity during this journey across all organizations. In this article I will focus on that aspect and propose a set of digital services, forming a *centralized platform open for decentralized contributions*, further called Insights platform or simply platform.
 
 In a spectrum that begins in letting everyone 'do their thing' and ends in centralizing everything in IT, this article defends a position in the middle that allows individuals to quickly put their knowledge to work wherever they are in the organization while allowing IT to maintain safeguards, manage and bound the complexity of the underlying technology stack.
 
@@ -44,11 +44,10 @@ Although the promises and pursue of a 'data-driven' transformation are not new i
 
 A great amount of focus is often given to technology patterns (e.g. data lakes, lambda/kappa architectures) and processes (e.g. Agile) but unfortunately, in my experience, these don't empower enough the organizations individuals and teams, and often end up as a simple rebrand of existing processes and artifacts.
 
-I read once somewhere that good design is invisible. I think this applies here.
-To elaborate on this I will outline the examples of bad design and how visible it becomes in this context.
+Bellow examples from my own experience on how organizations fall short when it comes to empowering their workforce to make better decisions using data.
 
 As an employee, I understand a part of my organization business and I need to look at relevant data.
-I quickly discover, that data is stored away in a silo protected by IT. After I build a business case and convince someone for access I get an SAP database export with terms and relationships I do not understand, I reach out to SAP admins to understand them. After four months I'm finally looking at data I can understand.
+I quickly discover, that data is stored away in a database protected by IT. After I build a business case and convince someone for access I get an SAP database export with terms and relationships I do not understand, I reach out to SAP admins to understand them. After four months I'm finally looking at data I can understand.
 
 > ... data is stored away in a silo ... I get an SAP database export with terms and relationships I do not understand ... after four months I'm finally looking at data I can understand.
 
@@ -115,12 +114,12 @@ Although IT can profit from Agile values and its frameworks, applying them top d
 ## Insights Platform digital services
 For individuals and teams to have a data based approach to decision making at least three needs must be met. Domain knowledge, data and technology.
 
-The platform will require them to bring the domain knowledge they already have and will focus on serving the other two areas, data and the technology.
-
 {% include figure.html
            url="/assets/2020-12-29-insights-platform/needs.png"
            description="Needs."
 %}
+
+The platform will require them to bring the domain knowledge they already have and will focus on serving the other two areas, data and the technology.
 
 These areas will be translated into three services resting in a common foundation.
 
