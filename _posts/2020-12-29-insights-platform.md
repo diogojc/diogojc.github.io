@@ -44,7 +44,7 @@ Although the promises and pursue of a 'data-driven' transformation are not new i
 
 A great amount of focus is often given to technology patterns (e.g. data lakes, lambda/kappa architectures) and processes (e.g. Agile) but unfortunately, in my experience, these don't empower enough the organizations individuals and teams, and often end up as a simple rebrand of existing processes and artifacts.
 
-Bellow examples from my own experience on how organizations fall short when it comes to empowering their workforce to make better decisions using data.
+Bellow are some real examples, from my experience, on how organizations fail to empower their workforce to make better decisions using data.
 
 As an employee, I understand a part of my organization business and I need to look at relevant data.
 I quickly discover, that data is stored away in a database protected by IT. After I build a business case and convince someone for access I get an SAP database export with terms and relationships I do not understand, I reach out to SAP admins to understand them. After four months I'm finally looking at data I can understand.
@@ -60,11 +60,7 @@ As an employee I find a colleague in a homologous department in another country 
 
 > I need to staff, and reengineer my colleagues solution. I don't know what to do.
 
-These are real and recurring examples based on my experience in working with people in complex organizations.
-
-Although this article will not give enough instructions to solve these problems, it can be used as a framework for implementation and minimize these problems.
-
-The platform should strive to remove these hurdles and hide away the complexity of bringing data, tools and intellectual property to the employee.
+The platform should strive to remove these hurdles and abstract away much of the complexity of bringing data, tools and intellectual property to the employee.
 
 ----------
 
@@ -80,25 +76,23 @@ Both the Data Warehouse and BI tool working together allow someone who understan
 Although their prevalence and longevity are a testament to its success recently cracks appeared, the first is they struggle to service users with increasing technical and analytics skills looking for more then reporting. The other one is because it treats all data as having the same value its costs tend to scale exponentially.
 
 ### Data Lake(s)
-The acumen from the Hadoop ecosystem showed that cheap compute and storage could tackle the explosion of data growth. Vendors quickly jumped to monetize this new trend under the moniker of Data Lake with the motto "hoard all the data and the users will come". 
+The acumen from the Hadoop ecosystem showed that cheap compute and storage could tackle the explosive data growth in organizations. Vendors quickly jumped to monetize this new trend under the moniker of Data Lake with the motto "hoard all the data and the users will come". 
 
-Even though the term Data Lake is so fuzzy to the point of meaninglessness, its motto combined with low upfront costs proved very attractive for IT managers. Enterprise architects also jumped in the latest tech trend and data lake adoption spread across the industry.
+Even though the term Data Lake is so fuzzy to the point of meaninglessness, its motto combined with low upfront costs proved very attractive for IT managers. Enterprise architects also jumped in the latest tech trend and data lake initiatives spread like wild fire.
 
 As unaltered copies of data landed in Data Lakes, end users were left scratching their heads on how to interpret the data and left, turning the lake into a graveyard. 
 IT workers struggled with applying security controls on files creating copies of copies to perform things like row-level security, turning the lake into a swamp.
 
-Some organizations soon after realized their data lake would make more sense when encapsulated by their Data Warehouse and have reaped some of it's benefits, namely how to deal, in a cost effective way, an increasing amount of data.
+Most organizations have since realized their data lake makes much more sense encapsulated by their existing Data Warehouse and have reaped some of it's benefits, namely how to deal, in a cost effective way, an increasing amount of data.
 
 ### Embedded Analytics
-The idea to bring analytics capabilities to the employees existing tools and processes is called embedded analytics.
+The idea to bring analytics capabilities to employees existing tools and processes is called embedded analytics.
 
-This bottom-up approach appeal is simple, pay a bit more for whatever software your employees are already using (e.g. Customer Relationship Management (CRM)) and overnight add analytical powers to their existing flows and processes.
+In reality the approach is simple, pay a bit more for whatever software your employees are already using (e.g. Customer Relationship Management (CRM)) and overnight add analytical powers to their existing flows and processes. Employees have to switch less between tools and purchasing changes are minimal or even consolidated in fewer vendors.
 
-Although simple this approach does deliver on it's promises and currently any serious software vendor in the enterprise has to offer this to remain competitive.
-
-The danger with this approach is, if the organization only relies on this approach, their data strategy will, for the better or worse, soon be completely coupled to it's vendors. 
+The biggest drawback is, if the organization relies too much on this approach, their data strategy will, for the better or worse, soon be completely coupled to it's vendors. 
 Although this might be fine in supporting areas of the business, for the business areas creating a competitive advantage the risk exposure can simply become too high. 
-For example: "What if the vendor becomes too expensive? What if we need other capabilities? What if they go bankrupt?"
+What if the vendor becomes too expensive? What if we need other capabilities? What if they go bankrupt?
 
 
 ### Agile IT
@@ -107,7 +101,7 @@ Agile values for software development [^4] and it's frameworks (e.g Scrum, Kanba
 The trend of moving to software what can be achieved in software [^3] has put tremendous pressure in IT departments.
 IT departments typically seen as a supporting area of the business, focusing on stability, predictability and well defined processes are now having to deal with a demand that changes often, fast and in some cases pushing what the industry has to offer.
 
-Although IT can profit from Agile values and its frameworks, applying them top down without providing new services, to a changing demand, often ends in IT running the same processes using a slightly different vocabulary. Hardly a compelling return-on-investment.
+Although IT can profit from Agile values and its frameworks, applying them top down without providing new services to a changing demand from employees, often ends in IT running the same processes using a slightly different vocabulary. Hardly a compelling return-on-investment.
 
 ----------
 
@@ -139,20 +133,19 @@ The foundation will be the result of the infrastructure, controls and processes 
 ----------
 
 ### Data
-The data (as-a) service must deliver data using, as much as possible, terms and relationships directly captured from the language used by the workforce through an interface, or API, that is consumable by existing tools.
+The data (as-a) service must deliver, first and foremost, high value data using as much as possible terms and relationships directly captured from the language used by the workforce and made available through interfaces, that are consumable by tools available to that workforce.
 
-Because the language used to describe data is context specific so must our delivery of data. This service will consist of, possibly overlapping, sets of data, or datasets, that hold data in very narrow contexts. A context will be a specific slice of an arbitrary number of the organization sub-domains.
-This is very much like Domain Driven Design approach to break down very large models filled with ambiguity and sometimes conflicting terminology to smaller domain models living in bounded contexts tackling narrower domain problems [^5].
+Because there are multiple correct and overlapping ways to describe data so must we. This service will consist of, possibly overlapping, sets of data, or datasets, that hold data in very narrow contexts of the organization. A context will be a specific slice of an arbitrary number of the organization (sub) domains.
+This is very much like Domain Driven Design (DDD) approach to break down very large models filled with ambiguity and sometimes conflicting terminology to smaller domain models living in bounded contexts tackling narrower domain problems [^5].
 
 {% include figure.html
            url="/assets/2020-12-29-insights-platform/bounded-context.png"
-           description="Bounded Context"
+           description="Example of Sales and Support Bounded Contexts in Domain-Driven Design"
 %}
 
-The argument for this approach is by having domain experts and data modelers share the same language in narrower sub-domains, it becomes easier for the experts to consume data from the produced models and for the modelers to work independently from each other in different domain areas.
+The argument for this approach is that by having domain experts and data modelers share the same language in narrower sub-domains, it becomes easier for the experts (workforce) to consume data from these models and for the modelers to work independently from each other in different domain areas.
 
-
-At the center of this service will therefore be the implementation of these datasets. More concretely the models, the interfaces with the outside world and how to bring the entities arriving from those interfaces into our models.
+At the center of this service will therefore be the implementation of these datasets. More concretely the models, their interfaces and the mechanisms by which those interfaces are used to consume and publish data.
 
 Around these datasets will be the implementations of the interfaces to the outside world. These are the connections with transactional sources (pull/push, streaming/pooling, through a database or files, etc.) and the logic necessary to present this data through specific APIs (XMLA, SQL, Parquet, etc.)
 
@@ -160,7 +153,7 @@ This approach is quite similar to the ports and adapters pattern [^6] for isolat
 
 {% include figure.html
            url="/assets/2020-12-29-insights-platform/ports-and-adapters.png"
-           description="Ports and adapters"
+           description="Ports and adapters architecture illustration"
 %}
 
   * Yellow: A domain context (e.g. Sales) with implementations for a data model and storage mediums.
