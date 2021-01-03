@@ -3,9 +3,8 @@ layout: post
 author: diogojc
 title:  "Insights platform for 'data-driven' organizations"
 image: "/assets/2020-12-29-insights-platform/services.png"
-excerpt: "How can a highly diverse and segmented workforce, in an organization, make more and better decisions by combining their knowledge with access to data and technology? How can the learned insights be put to work and reused across the organization? What role should Information Technology (IT) departments play in this data-driven transformation?
-This article will bring these together and propose a set of digital services through a *centralized platform open for decentralized contributions* I will refer to as Insights Platform (or simply Platform). I argue that, although not a guarantee, the services in this platform can help organizations in this transformation."
-description: "In a spectrum that begins in letting everyone 'do their thing' and ends in centralizing everything in IT, this article defends a position in the middle that allows individuals to quickly put their knowledge to work wherever they are in the organization while allowing IT to maintain safeguards, manage and bound the complexity of the underlying technology stack."
+excerpt: "Although every organization journey in becoming data-driven is unique and multi-faceted, in my experience, there is at least one aspect that can accelerate and bring clarity during this journey across all organizations. In this article I will focus on that aspect and propose a set of digital services, forming a *centralized platform open for decentralized contributions*, further called Insights platform or simply platform."
+description: "Although every organization journey in becoming data-driven is unique and multi-faceted, in my experience, there is at least one aspect that can accelerate and bring clarity during this journey across all organizations. In this article I will focus on that aspect and propose a set of digital services, forming a *centralized platform open for decentralized contributions*, further called Insights platform or simply platform."
 date: 2020-12-29
 categories: [enterprise, platform]
 tags: [data, transformation, insights, platform, IT, organization, services, analytics, lake, warehouse, embedded, digital]
@@ -44,7 +43,7 @@ Although the promises and pursue of a 'data-driven' transformation are not new i
 
 A great amount of focus is often given to technology patterns (e.g. data lakes, lambda/kappa architectures) and processes (e.g. Agile) but unfortunately, in my experience, these don't empower enough the organizations individuals and teams, and often end up as a simple rebrand of existing processes and artifacts.
 
-Bellow are some real examples, from my experience, on how organizations fail to empower their workforce to make better decisions using data.
+Below are some real examples, from my experience, on how organizations fail to empower their workforce to make better decisions using data.
 
 As an employee, I understand a part of my organization business and I need to look at relevant data.
 I quickly discover, that data is stored away in a database protected by IT. After I build a business case and convince someone for access I get an SAP database export with terms and relationships I do not understand, I reach out to SAP admins to understand them. After four months I'm finally looking at data I can understand.
@@ -133,9 +132,10 @@ The foundation will be the result of the infrastructure, controls and processes 
 ----------
 
 ### Data
-The data (as-a) service must deliver, first and foremost, high value data using as much as possible terms and relationships directly captured from the language used by the workforce and made available through interfaces, that are consumable by tools available to that workforce.
+The data (as-a) service must deliver, first and foremost, high value data using, as much as possible, terms and relationships captured from the language used by the workforce and made available through interfaces, that are usable by tools available to that workforce.
 
-Because there are multiple correct and overlapping ways to describe data so must we. This service will consist of, possibly overlapping, sets of data, or datasets, that hold data in very narrow contexts of the organization. A context will be a specific slice of an arbitrary number of the organization (sub) domains.
+Because there are multiple correct and overlapping ways to describe data so must we. This service will consist of, possibly overlapping, sets of data, or datasets, each holding data in very narrow contexts of the organization. A context is often a sub-domain in the organization delimited by business units or teams.
+
 This is very much like Domain Driven Design (DDD) approach to break down very large models filled with ambiguity and sometimes conflicting terminology to smaller domain models living in bounded contexts tackling narrower domain problems [^5].
 
 {% include figure.html
@@ -143,37 +143,31 @@ This is very much like Domain Driven Design (DDD) approach to break down very la
            description="Example of Sales and Support Bounded Contexts in Domain-Driven Design"
 %}
 
-The argument for this approach is that by having domain experts and data modelers share the same language in narrower sub-domains, it becomes easier for the experts (workforce) to consume data from these models and for the modelers to work independently from each other in different domain areas.
+The argument for multiple models is that by having domain experts (workforce) and data modelers share the same language in narrower sub-domains, it becomes easier for the domain experts (workforce) to consume data from these models and for the modelers to work independently from each other in different domain areas.
 
-At the center of this service will therefore be the implementation of these datasets. More concretely the models, their interfaces and the mechanisms by which those interfaces are used to consume and publish data.
+At the core of each dataset is a model and its persistence to a storage medium in a highly normalized form. Around the model are the mechanisms by which that model is both filled with data (pull/push, streaming/pooling, ETL/ELT, etc.) and made available for consumption (XMLA, SQL, Parquet, normalized/denormalized etc.).
 
-Around these datasets will be the implementations of the interfaces to the outside world. These are the connections with transactional sources (pull/push, streaming/pooling, through a database or files, etc.) and the logic necessary to present this data through specific APIs (XMLA, SQL, Parquet, etc.)
-
-This approach is quite similar to the ports and adapters pattern [^6] for isolating application logic and infrastructure. The motivation is to enable the development of the models to be decoupled from the ever evolving transactional systems and end-user tools.
+This approach is similar to the ports and adapters pattern [^6], illustrated below, for isolating application logic and infrastructure. The motivation is to enable the development of the models to be decoupled from the ever evolving transactional systems and end-user tools.
 
 {% include figure.html
            url="/assets/2020-12-29-insights-platform/ports-and-adapters.png"
            description="Ports and adapters architecture illustration"
 %}
 
-  * Yellow: A domain context (e.g. Sales) with implementations for a data model and storage mediums.
-  * Red: Interfaces of the model with the outside world (e.g. Customer Repository).
-  * Light Blue: Implementation of data movement from outside systems into datasets (e.g. customer extraction from CRM and transactional systems).
-  * Dark Blue: Implementation of APIs for data consumption (e.g. XMLA with sales results).
+  * Yellow: Data model including its storage implementation and medium. (e.g. logical model and it's third normal form on SQL)
+  * Red: Interfaces specifying how the model is filled with data and make data available for consumption
+  * Light Blue: Implementation of the interfaces that bring data from outside systems into the model (e.g ETL filling all customers from transactional SQL database).
+  * Dark Blue: Implementation of interfaces for data consumption (e.g. XMLA with denormalized sales results).
 
-Typically the broader an organizations business model the more contexts there will be to fit data into, and therefore datasets that can delivered in this service. Prioritization should be done based on demand. Although the owners of this platform are always accountable, the implementation of specific datasets can be sourced to other parts of the organization closer to the context in question.
+Although the owners of this platform are always accountable, implementation responsibility can be in other parts of the organization closer to the context in question.
 
-Although I argue the investment in integrating data and making it interpretable through the usage of context specific languages is this service biggest asset, it does not exclude the usage of tools for metadata cataloguing helping users find the appropriate dataset location and gain trust how that data ends up in front of them.
+Tools for metadata management, cataloguing and lineage can work next to these datasets to help employees find the appropriate dataset, location, provenance.
 
-On the topic of filling these models and interfaces with data the owners of the platform can take one of two approaches.
-  * Connect to the systems of data as they are, copy the data and map it to the models.
-  * Create an interface for ingestion and push the responsibility of connection, copying and mapping to other parts of the organization.
-In terms of ports and adapters architecture, should the platform owners be responsible for only its ports or also its adapters?
+On the topic of who fills these models with data, the owners of the platform can take one of two approaches.
+  * Connecting to systems of data as they are and bringing the data to the models is part of implementing the service.
+  * Implement an interface for ingestion and push the responsibility of connecting, mapping and pushing data into the model to other parts of the organization.
 
 Both approaches scale differently as you would expect for heterogeneous landscapes of data systems. 
-
-<span style="color:red">**architect of this part goes here**</span>.
-
 
 ----------
 
@@ -199,11 +193,11 @@ For a tool to be available in these environments it must meet only two requireme
 Tools can either come provisioned and configured in the environments or the environments allow the employee to self-service that provisioning and configuration.
 Although the second approach can work well for tech-savvy employees, the first approach can speed up significantly the work of tech-savvy and non tech-savvy employees alike. To this extent the platform offers multiple environment types that cater to different workloads reoccurring often in the organization.
 
-Bellow are examples of workloads commonly found in organizations:
+Below are examples of workloads I find often in organizations:
 
   * Data Science experiment:
-  Extracting insights from structured or unstructured data, typically applying scientific processes and techniques from multiple disciplines like operational research, data mining, statistics, machine learning or artificial intelligence and others.
-  Typical outcomes are i) document of experiment with findings, methodology and conclusions, ii) Optimized plan that minimizes some cost function and/or ii) a trained model that can do inference on new data.
+  Extracting insights from structured or unstructured data, typically applying scientific processes and techniques from multiple disciplines like operational research, data mining, statistics, machine learning, artificial intelligence and others.
+  Typical outcomes are i) document of experiment with findings, methodology and conclusions, ii) Optimized plan that minimizes some cost function and/or iii) a trained model that can do inference on new data to some level of accuracy.
   Such experiments include finding correlations, performing sensitivity analysis, signal processing, forecasting, image processing, classification, finding latent structures to name a few.
 
   * the Data Warehouse and BI solution:
@@ -252,9 +246,9 @@ The key in speeding up the reuse of IP, is by transferring the ownership of supp
 %}
 
 As part of this transition, re-hosting the IP in shared infrastructure allows for i) lowering running costs and ii) scale support for application and infrastructure separately.
-
 An example of such re-hosting would be moving all solutions IP during the transition to containers (e.g. Docker) and a container orchestration tool (e.g. Kubernetes).
 
+Another change in this transition would be making these solutions multi-tenant and creating interfaces and documentation on how new teams in the organization can open a new tenant space and onboard their own data.
 
 ----------
 
