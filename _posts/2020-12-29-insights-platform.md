@@ -222,16 +222,12 @@ Below are examples of workloads I find often in organizations:
   Automating workflows and business processes to reduce manual, error prone, work and/or speed up the flow of data in an organization.
   Traditional workflow automation development tools and Robotic Process Automation tools are relevant in this space.
 
+The act of requesting a new environment, to perform a workload, can happen through a website and the provisioning made fully automated by the use of templates, specifying all the infrastructure and configuration as code. The figure bellow illustrates the process.
 
 {% include figure.html
            url="/assets/2020-12-29-insights-platform/temps-envs.png"
-           description="Templates and environments"
+           description="Environment provisioning illustration"
 %}
-
-
-For each existing or emerging workload in the organization, a template should exist with instructions of which tools in which configurations should be deployed when creating a new environment to service people doing that workload. This template should be fully machine readable and handed off to an infrastructure provisioning software when creating a new environment.
-
-<span style="color:red">**sequence diagram**</span>.
 
 ----------
 
@@ -252,16 +248,14 @@ Another change in this transition would be making these solutions multi-tenant a
 
 ----------
 
-## Insights Platform management
-**TODO: propose different support and ownership structures**
+## Final remarks
+Having a workforce that makes better decisions using a data first approach is more then having a platform. Strong leadership, change management, great support, sourcing and partners are all just as important.
 
-## Remarks and discussion
-**TODO: give concrete examples and make this more data driven article**
+Nevertheless an organization culture is the net behavior of its workforce. and they must be served with different propositions if we expect them to perform their work leveraging data. This has been the focus of the article.
 
-The platform as presented should read as a guide to organizing technology in meaningful services that help the workforce make use of data in their daily work.
-The implementation and operation of such services are dependent on each organization size, structure, maturity and sourcing capabilities to name a few.
+----------
 
-
+## References
 
 [^1]: Data-Driven Transformation: Accelerate at Scale Now, Boston Consulting Group May 23<sup>rd</sup> 2017 [Link](https://www.bcg.com/publications/2017/digital-transformation-transformation-data-driven-transformation)
 
