@@ -10,19 +10,6 @@ categories: [enterprise, platform]
 tags: [data, transformation, insights, platform, IT, organization, services, analytics, lake, warehouse, embedded, digital]
 ---
 
-<!-- ## Executive summary
-Data driven transformation and IT role
-Organizations struggle to organize technology into meaningful digital services
-Centralized platform open to decentralized contributions proposition
-Digital services
-* Data
-* Tools
-* Solutions 
-conclusion 
-
-----------
--->
-
 ## Introduction
 This article is about organizations becoming more "data-driven".
 
@@ -46,9 +33,9 @@ A great amount of focus is often given to technology patterns (e.g. data lakes, 
 Below are some real examples, from my experience, on how organizations fail to empower their workforce to make better decisions using data.
 
 As an employee, I understand a part of my organization business and I need to look at relevant data.
-I quickly discover, that data is stored away in a database protected by IT. After I build a business case and convince someone for access I get an SAP database export with terms and relationships I do not understand, I reach out to SAP admins to understand them. After four months I'm finally looking at data I can understand.
+I quickly discover, that data is stored away in a database protected by IT. After I build a business case and convince someone for access I get a database export with terms and relationships I do not understand, I reach out to DB admins. After four months I'm finally looking at data I can understand.
 
-> ... data is stored away in a silo ... I get an SAP database export with terms and relationships I do not understand ... after four months I'm finally looking at data I can understand.
+> ... data is stored away in a silo ... I get an  database export with terms and relationships I do not understand ... after four months I'm finally looking at data I can understand.
 
 As an employee, I have relevant data but need tools (and compute) to analyze it.
 I find through a colleague, they are using a tool that would fit my needs. Their setup took three months and spanned licensing, infrastructure, security controls and a lot of meetings with IT. I would have to go through the same, so I just use a trial version of the tool on my laptop.
